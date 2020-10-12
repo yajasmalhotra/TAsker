@@ -9,7 +9,6 @@ public class Task {
     private String course;
     private boolean status;
 
-
     public Task(String name) {
         this.name = name;
         this.status = false;

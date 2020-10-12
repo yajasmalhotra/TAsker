@@ -39,5 +39,29 @@ public class Lab {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public String getLabName() {
+        return labName;
+    }
+
+    public int getCourseNum() {
+        return courseNum;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
 }
 
