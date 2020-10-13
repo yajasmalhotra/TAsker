@@ -7,8 +7,10 @@ public class Schedule {
     private static ArrayList<Task> tasks;
     private static ArrayList<Lab> labs;
     private static ArrayList<Tutorial> tutorials;
+    private final String name;
 
-    public Schedule() {
+    public Schedule(String name) {
+        this.name = name;
         tasks = new ArrayList<Task>();
         labs = new ArrayList<Lab>();
         tutorials = new ArrayList<Tutorial>();
@@ -34,6 +36,10 @@ public class Schedule {
         labs.remove(lab);
     }
 
+    public ArrayList<Lab> getLabs() {
+        return labs;
+    }
+
     public void addTutorial(Tutorial tutorial) {
         tutorials.add(tutorial);
     }
@@ -42,5 +48,8 @@ public class Schedule {
         tutorials.remove(tutorial);
     }
 
+    public ArrayList<Tutorial> getTutorials() {
+        return tutorials;
+    }
 
 }

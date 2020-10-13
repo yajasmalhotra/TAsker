@@ -100,7 +100,7 @@ public class TaskerApp {
     }
 
     private void init() {
-        schedule = new Schedule();
+        schedule = new Schedule("Schedule 1");
         input = new Scanner(System.in);
     }
 

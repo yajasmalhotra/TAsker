@@ -18,8 +18,7 @@ system.
 <h4>User Stories:</h4>
 - As a user, I want to be able to create tasks/labs/tutorials for a course of 
 my choice.
-- As a user, I want to be able to fully modify all aspects of a created task/lab/
-tutorial as I choose.  
+- As a user, I want to view all the tasks/labs/tutorials I have created. 
 - As a user, I want to be able to select a task and mark it as complete.
-- As a user, I want to be able to add an unspecified number of Teaching Assistants
-to a Task, Lab, or Tutorial.
+- As a user, I want to be able to add an unspecified number of Tasks, Labs, or 
+Tutorials to the schedule.
