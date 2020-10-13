@@ -53,7 +53,7 @@ public class Lab {
     }
 
     public String getLabName() {
-        return labName;
+        return this.labName;
     }
 
     public int getCourseNum() {

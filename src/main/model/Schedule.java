@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Schedule {
 
-    private ArrayList<Task> tasks;
-    private ArrayList<Lab> labs;
-    private ArrayList<Tutorial> tutorials;
+    private static ArrayList<Task> tasks;
+    private static ArrayList<Lab> labs;
+    private static ArrayList<Tutorial> tutorials;
 
     public Schedule() {
         tasks = new ArrayList<Task>();
@@ -20,6 +20,10 @@ public class Schedule {
 
     public void removeTask(Task task) {
         tasks.remove(task);
+    }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 
     public void addLab(Lab lab) {

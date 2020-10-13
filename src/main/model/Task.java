@@ -26,6 +26,12 @@ public class Task {
         this.status = true;
     }
 
+    public void undoTask() {
+        if (this.status = true) {
+            this.status = false;
+        }
+    }
+
     public String getName() {
         return name;
     }
