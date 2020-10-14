@@ -7,7 +7,8 @@ import model.Tutorial;
 
 import java.util.Scanner;
 
-// Course administration application
+// Course administration application. Allows the user to add/remove/modify
+// course-related tasks, labs, and tutorials to a schedule.
 public class TaskerApp {
 
     private Schedule schedule;
