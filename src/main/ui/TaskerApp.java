@@ -67,9 +67,13 @@ public class TaskerApp {
         newTask.setName(name);
 
         schedule.addTask(newTask);
-        System.out.println(schedule.getTasks());
-
         // TODO: For loop to print out names for each task.
+
+        System.out.println("Tasks scheduled:");
+        for (int i = 0; i < schedule.getTasks().size(); i++) {
+            System.out.println(schedule.getTasks().get(i).getName());
+        }
+
     }
 
     private void makeLab() {
@@ -112,6 +116,33 @@ public class TaskerApp {
         input.useDelimiter("\n");
     }
 
+    private void selectModeMenu() {
+        System.out.println("\nSelect a mode:\n");
+        System.out.println("\t Create");
+        System.out.println("\t Display");
+        System.out.println("\t Modify");
+    }
+
+    private void createModeMenu() {
+        System.out.println("\nSelect an action\n");
+        System.out.println("\tmk--task          -> Create New Task");
+        System.out.println("\tmk--lab           -> Create new Lab");
+        System.out.println("\tmk--tutorial      -> Create new Tutorial");
+    }
+
+    private void displayModeMenu() {
+        System.out.println("\nSelect an action\n");
+        System.out.println("\tdp--task          -> Display Tasks");
+        System.out.println("\tdp--lab           -> Display Labs");
+        System.out.println("\tdp--tutorial      -> Display Tutorials");
+    }
+
+    private void modifyModeMenu() {
+        System.out.println("\nSelect an action\n");
+        System.out.println("\tmf--task          -> Modify Task");
+        System.out.println("\tmf--lab           -> Modify Lab");
+        System.out.println("\tmf--tutorial      -> Modify Tutorial");
+    }
 
 }
 
