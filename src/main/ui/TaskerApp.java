@@ -62,7 +62,7 @@ public class TaskerApp {
                 displayTasks();
             } else if (displayModeSelect.equals("dp--lab")) {
                 displayLabs();
-            } else if (displayModeSelect.equals("dp-tutorials")) {
+            } else if (displayModeSelect.equals("dp--tutorial")) {
                 displayTutorials();
             }
         }
