@@ -23,10 +23,20 @@ class ScheduleTest {
     }
 
     @Test
-    public void testAddTask() {
+    public void testAddTaskNotAtLimit() {
         schedule.addTask(task1);
 
         assertEquals(1, schedule.getTasks().size());
+    }
+
+    @Test
+    public void testAddTaskAtLimit() {
+        for (int i = 0; i < 100; i++) {
+            Task trialTask = new Task("trial");
+            schedule.addTask(trialTask);
+        }
+
+        assertEquals(100, schedule.getTasks().size());
     }
 
     @Test

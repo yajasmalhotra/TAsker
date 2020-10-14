@@ -17,7 +17,9 @@ public class Schedule {
     }
 
     public void addTask(Task task) {
-        tasks.add(task);
+        if (tasks.size() < 100) {           // added task limit of 100 to add branching
+            tasks.add(task);
+        }
     }
 
     public void removeTask(Task task) {

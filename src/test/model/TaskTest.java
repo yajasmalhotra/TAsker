@@ -36,15 +36,8 @@ public class TaskTest {
     }
 
     @Test
-    public void testUndoTaskAlreadyTrue() {
+    public void testUndoTask() {
         task1.completeTask();
-        task1.undoTask();
-
-        assertFalse(task1.getStatus());
-    }
-
-    @Test
-    public void testUndoTaskAlreadyFalse() {
         task1.undoTask();
 
         assertFalse(task1.getStatus());
