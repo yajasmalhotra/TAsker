@@ -24,12 +24,12 @@ public class TaskerApp {
         String command;
 
         init();
-        mainMenu();
-
-        command = input.next();
-        command = command.toLowerCase();
 
         while (running) {
+            mainMenu();
+            command = input.next();
+            command = command.toLowerCase();
+
             if (command.equals("quit")) {
                 running = false;
             } else {
@@ -63,10 +63,13 @@ public class TaskerApp {
     private void makeTask() {
         Task newTask = new Task("");
         System.out.println("Please enter task name: ");
-        String name = input.nextLine();
+        String name = input.next();
         newTask.setName(name);
 
         schedule.addTask(newTask);
+        System.out.println(schedule.getTasks());
+
+        // TODO: For loop to print out names for each task.
     }
 
     private void makeLab() {
@@ -82,6 +85,8 @@ public class TaskerApp {
         newLab.setLabName(labName);
 
         schedule.addLab(newLab);
+
+        // TODO: For loop to print out names for each lab.
     }
 
     private void makeTutorial() {
@@ -97,11 +102,14 @@ public class TaskerApp {
         newTutorial.setTutorialName(tutorialName);
 
         schedule.addTutorial(newTutorial);
+
+        // TODO: For loop to print out names for each Tutorial.
     }
 
     private void init() {
         schedule = new Schedule("Schedule 1");
         input = new Scanner(System.in);
+        input.useDelimiter("\n");
     }
 
 
