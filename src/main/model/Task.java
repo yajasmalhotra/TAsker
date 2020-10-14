@@ -56,11 +56,7 @@ public class Task {
         this.course = course;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 }
