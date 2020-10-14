@@ -37,7 +37,7 @@ public class TaskerApp {
             }
         }
 
-        System.out.println("\n Thank you for using Tasker!");
+        System.out.println("\n Thank you for using (TA)sker!");
 
     }
 
@@ -110,8 +110,6 @@ public class TaskerApp {
         newLab.setLabName(labName);
 
         schedule.addLab(newLab);
-
-        // TODO: For loop to print out names for each lab.
     }
 
     // MODIFIES: this
@@ -123,7 +121,7 @@ public class TaskerApp {
         String courseName = input.next();
         System.out.println("Please enter course number: ");
         int courseNum = input.nextInt();
-        System.out.println("Please enter tutorial name");
+        System.out.println("Please enter tutorial name: ");
         String tutorialName = input.next();
         newTutorial.setCourseName(courseName);
         newTutorial.setCourseNum(courseNum);
@@ -188,10 +186,10 @@ public class TaskerApp {
     private void displayLabs() {
         System.out.println("Labs scheduled:");
         for (int i = 0; i < schedule.getLabs().size(); i++) {
-            System.out.printf(schedule.getLabs().get(i).getCourseName(),
-                              schedule.getLabs().get(i).getCourseNum(),
-                              schedule.getLabs().get(i).getLabName(),
-                              "\n");
+            System.out.printf("%s %d %s\n",
+                    schedule.getLabs().get(i).getCourseName(),
+                    schedule.getLabs().get(i).getCourseNum(),
+                    schedule.getLabs().get(i).getLabName());
         }
     }
 
@@ -200,10 +198,10 @@ public class TaskerApp {
     private void displayTutorials() {
         System.out.println("Tutorials scheduled:");
         for (int i = 0; i < schedule.getTutorials().size(); i++) {
-            System.out.printf(schedule.getTutorials().get(i).getCourseName(),
-                              schedule.getTutorials().get(i).getCourseNum(),
-                              schedule.getTutorials().get(i).getTutorialName(),
-                              "\n");
+            System.out.printf("%s %d %s\n",
+                    schedule.getTutorials().get(i).getCourseName(),
+                    schedule.getTutorials().get(i).getCourseNum(),
+                    schedule.getTutorials().get(i).getTutorialName());
         }
     }
 
