@@ -65,6 +65,17 @@ public class TaskerApp {
             } else if (displayModeSelect.equals("dp--tutorial")) {
                 displayTutorials();
             }
+
+        } else if (command.equals("mf")) {
+            modifyModeMenu();
+            String modifyModeSelect = input.next();
+            if (modifyModeSelect.equals("mf--task")) {
+                // TODO
+            } else if (modifyModeSelect.equals("mf--lab")) {
+                // TODO
+            } else if (modifyModeSelect.equals(("mf--tutorial"))) {
+                // TODO
+            }
         }
     }
 
@@ -88,10 +99,7 @@ public class TaskerApp {
         schedule.addTask(newTask);
 
         System.out.println("Tasks scheduled:");
-        for (int i = 0; i < schedule.getTasks().size(); i++) {
-            System.out.println(schedule.getTasks().get(i).getName());
-        }
-
+        displayTasks();
     }
 
     // MODIFIES: this
@@ -110,6 +118,9 @@ public class TaskerApp {
         newLab.setLabName(labName);
 
         schedule.addLab(newLab);
+
+        System.out.println("Labs scheduled");
+        displayLabs();
     }
 
     // MODIFIES: this
@@ -129,7 +140,8 @@ public class TaskerApp {
 
         schedule.addTutorial(newTutorial);
 
-        // TODO: For loop to print out names for each Tutorial.
+        System.out.println("Tutorials scheduled:");
+        displayTutorials();
     }
 
     // MODIFIES: this
@@ -145,6 +157,7 @@ public class TaskerApp {
         System.out.println("\nSelect a mode:\n");
         System.out.println("\tcr       -> Create Mode");
         System.out.println("\tdp       -> Display Mode");
+        System.out.println("\tmf       -> Modify Mode");
         System.out.println("\tquit     -> Quit Application");
         // TODO System.out.println("\t Modify");
     }
@@ -205,8 +218,6 @@ public class TaskerApp {
         }
     }
 
-    private void completeTask() {
 
-    }
 }
 
