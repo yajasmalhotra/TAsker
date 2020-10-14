@@ -63,5 +63,7 @@ public class Lab {
     public String getCourseName() {
         return courseName;
     }
+
+
 }
 
