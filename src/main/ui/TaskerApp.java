@@ -45,37 +45,54 @@ public class TaskerApp {
     // EFFECTS: processes user commands
     private void processCommands(String command) {
         if (command.equals("cr")) {
-            createModeMenu();
-            String createModeSelect = input.next();
-            if (createModeSelect.equals("cr--task")) {
-                makeTask();
-            } else if (createModeSelect.equals("cr--lab")) {
-                makeLab();
-            } else if (createModeSelect.equals("cr--tutorial")) {
-                makeTutorial();
-            }
+            createItem();
 
         } else if (command.equals("dp")) {
-            displayModeMenu();
-            String displayModeSelect = input.next();
-            if (displayModeSelect.equals("dp--task")) {
-                displayTasks();
-            } else if (displayModeSelect.equals("dp--lab")) {
-                displayLabs();
-            } else if (displayModeSelect.equals("dp--tutorial")) {
-                displayTutorials();
-            }
+            displayItem();
 
         } else if (command.equals("mf")) {
-            modifyModeMenu();
-            String modifyModeSelect = input.next();
-            if (modifyModeSelect.equals("mf--task")) {
-                modifyTask();
-            } else if (modifyModeSelect.equals("mf--lab")) {
-                // TODO
-            } else if (modifyModeSelect.equals(("mf--tutorial"))) {
-                // TODO
-            }
+            modifyItem();
+        }
+    }
+
+    // EFFECTS: processes user commands used to modify a new item on schedule
+
+    private void modifyItem() {
+        modifyModeMenu();
+        String modifyModeSelect = input.next();
+        if (modifyModeSelect.equals("mf--task")) {
+            modifyTask();
+        } else if (modifyModeSelect.equals("mf--lab")) {
+            // TODO
+        } else if (modifyModeSelect.equals(("mf--tutorial"))) {
+            // TODO
+        }
+    }
+
+    // EFFECTS: processes user commands used to display items on schedule
+
+    private void displayItem() {
+        displayModeMenu();
+        String displayModeSelect = input.next();
+        if (displayModeSelect.equals("dp--task")) {
+            displayTasks();
+        } else if (displayModeSelect.equals("dp--lab")) {
+            displayLabs();
+        } else if (displayModeSelect.equals("dp--tutorial")) {
+            displayTutorials();
+        }
+    }
+
+    // EFFECTS: processes user commands used to create a new item on schedule
+    private void createItem() {
+        createModeMenu();
+        String createModeSelect = input.next();
+        if (createModeSelect.equals("cr--task")) {
+            makeTask();
+        } else if (createModeSelect.equals("cr--lab")) {
+            makeLab();
+        } else if (createModeSelect.equals("cr--tutorial")) {
+            makeTutorial();
         }
     }
 
@@ -170,8 +187,8 @@ public class TaskerApp {
     private void modifyModeMenu() {
         System.out.println("\nSelect an action:\n");
         System.out.println("\tmf--task          -> Modify Task");
-        System.out.println("\tmf--lab           -> Modify Lab");
-        System.out.println("\tmf--tutorial      -> Modify Tutorial");
+        System.out.println("\tmf--lab           -> Modify Lab           (Under Construction)");
+        System.out.println("\tmf--tutorial      -> Modify Tutorial      (Under Construction)");
     }
 
     // EFFECTS: prints out names of all the tasks currently in the schedule
@@ -179,7 +196,7 @@ public class TaskerApp {
         System.out.println("Tasks scheduled:");
         for (int i = 0; i < schedule.getTasks().size(); i++) {
             System.out.printf("%s %s \n",
-                    ((i + 1) + "."),
+                    ((i + 1) + ")"),
                     schedule.getTasks().get(i).getName());
         }
     }
@@ -189,7 +206,8 @@ public class TaskerApp {
     private void displayLabs() {
         System.out.println("Labs scheduled:");
         for (int i = 0; i < schedule.getLabs().size(); i++) {
-            System.out.printf("%s %d %s\n",
+            System.out.printf("%s %s %d %s \n",
+                    ((i + 1) + ")"),
                     schedule.getLabs().get(i).getCourseName(),
                     schedule.getLabs().get(i).getCourseNum(),
                     schedule.getLabs().get(i).getLabName());
@@ -201,7 +219,8 @@ public class TaskerApp {
     private void displayTutorials() {
         System.out.println("Tutorials scheduled:");
         for (int i = 0; i < schedule.getTutorials().size(); i++) {
-            System.out.printf("%s %d %s\n",
+            System.out.printf("%s %s %d %s \n",
+                    ((i + 1) + ")"),
                     schedule.getTutorials().get(i).getCourseName(),
                     schedule.getTutorials().get(i).getCourseNum(),
                     schedule.getTutorials().get(i).getTutorialName());
