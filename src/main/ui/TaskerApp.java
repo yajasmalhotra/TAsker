@@ -144,5 +144,31 @@ public class TaskerApp {
         System.out.println("\tmf--tutorial      -> Modify Tutorial");
     }
 
+    private void displayTasks() {
+        System.out.println("Tasks scheduled:");
+        for (int i = 0; i < schedule.getTasks().size(); i++) {
+            System.out.println(schedule.getTasks().get(i).getName());
+        }
+    }
+
+    private void displayLabs() {
+        System.out.println("Labs scheduled:");
+        for (int i = 0; i < schedule.getLabs().size(); i++) {
+            System.out.printf(schedule.getLabs().get(i).getCourseName(),
+                              schedule.getLabs().get(i).getCourseNum(),
+                              schedule.getLabs().get(i).getLabName(),
+                              "\n");
+        }
+    }
+
+    private void displayTutorials() {
+        System.out.println("Tutorials scheduled:");
+        for (int i = 0; i < schedule.getTutorials().size(); i++) {
+            System.out.printf(schedule.getTutorials().get(i).getCourseName(),
+                              schedule.getTutorials().get(i).getCourseNum(),
+                              schedule.getTutorials().get(i).getTutorialName(),
+                              "\n");
+        }
+    }
 }
 
