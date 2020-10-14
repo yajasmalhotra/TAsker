@@ -79,11 +79,11 @@ public class TaskerApp {
     private void makeLab() {
         Lab newLab = new Lab("", 0, "");
         System.out.println("Please enter course name: ");
-        String courseName = input.nextLine();
+        String courseName = input.next();
         System.out.println("Please enter course number: ");
         int courseNum = input.nextInt();
         System.out.println("Please enter lab name");
-        String labName = input.nextLine();
+        String labName = input.next();
         newLab.setCourseName(courseName);
         newLab.setCourseNum(courseNum);
         newLab.setLabName(labName);
@@ -96,11 +96,11 @@ public class TaskerApp {
     private void makeTutorial() {
         Tutorial newTutorial = new Tutorial("", 0, "");
         System.out.println("Please enter course name: ");
-        String courseName = input.nextLine();
+        String courseName = input.next();
         System.out.println("Please enter course number: ");
         int courseNum = input.nextInt();
         System.out.println("Please enter tutorial name");
-        String tutorialName = input.nextLine();
+        String tutorialName = input.next();
         newTutorial.setCourseName(courseName);
         newTutorial.setCourseNum(courseNum);
         newTutorial.setTutorialName(tutorialName);
