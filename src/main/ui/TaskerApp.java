@@ -70,7 +70,7 @@ public class TaskerApp {
             modifyModeMenu();
             String modifyModeSelect = input.next();
             if (modifyModeSelect.equals("mf--task")) {
-                // TODO
+                modifyTask();
             } else if (modifyModeSelect.equals("mf--lab")) {
                 // TODO
             } else if (modifyModeSelect.equals(("mf--tutorial"))) {
@@ -78,14 +78,6 @@ public class TaskerApp {
             }
         }
     }
-
-    // EFFECTS: displays main menu
-    //private void mainMenu() {
-        //System.out.println("\t mk--task         -> Create Task");
-        //System.out.println("\t mk--lab          -> Create Lab");
-        //System.out.println("\t mk--tutorial     -> Create Tutorial");
-        //System.out.println("\t quit             -> Exit Application");
-
 
 
     // MODIFIES: this
@@ -98,7 +90,6 @@ public class TaskerApp {
 
         schedule.addTask(newTask);
 
-        System.out.println("Tasks scheduled:");
         displayTasks();
     }
 
@@ -119,7 +110,6 @@ public class TaskerApp {
 
         schedule.addLab(newLab);
 
-        System.out.println("Labs scheduled");
         displayLabs();
     }
 
@@ -140,7 +130,6 @@ public class TaskerApp {
 
         schedule.addTutorial(newTutorial);
 
-        System.out.println("Tutorials scheduled:");
         displayTutorials();
     }
 
@@ -159,12 +148,11 @@ public class TaskerApp {
         System.out.println("\tdp       -> Display Mode");
         System.out.println("\tmf       -> Modify Mode");
         System.out.println("\tquit     -> Quit Application");
-        // TODO System.out.println("\t Modify");
     }
 
     // EFFECTS: displays list of user options when in Create mode
     private void createModeMenu() {
-        System.out.println("\nSelect an action\n");
+        System.out.println("\nSelect an action:\n");
         System.out.println("\tcr--task          -> Create New Task");
         System.out.println("\tcr--lab           -> Create new Lab");
         System.out.println("\tcr--tutorial      -> Create new Tutorial");
@@ -172,7 +160,7 @@ public class TaskerApp {
 
     // EFFECTS: displays list of user options when in Display mode
     private void displayModeMenu() {
-        System.out.println("\nSelect an action\n");
+        System.out.println("\nSelect an action:\n");
         System.out.println("\tdp--task          -> Display Tasks");
         System.out.println("\tdp--lab           -> Display Labs");
         System.out.println("\tdp--tutorial      -> Display Tutorials");
@@ -180,7 +168,7 @@ public class TaskerApp {
 
     // EFFECTS: displays list of user options when in Modify mode
     private void modifyModeMenu() {
-        System.out.println("\nSelect an action\n");
+        System.out.println("\nSelect an action:\n");
         System.out.println("\tmf--task          -> Modify Task");
         System.out.println("\tmf--lab           -> Modify Lab");
         System.out.println("\tmf--tutorial      -> Modify Tutorial");
@@ -190,7 +178,9 @@ public class TaskerApp {
     private void displayTasks() {
         System.out.println("Tasks scheduled:");
         for (int i = 0; i < schedule.getTasks().size(); i++) {
-            System.out.println(schedule.getTasks().get(i).getName());
+            System.out.printf("%s %s \n",
+                    ((i + 1) + "."),
+                    schedule.getTasks().get(i).getName());
         }
     }
 
@@ -218,6 +208,30 @@ public class TaskerApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows the user to select a task from the list of tasks;
+    // selected task can then be deleted, marked as complete/incomplete
+    private void modifyTask() {
+        displayTasks();
+        System.out.println();
+        System.out.printf("Select a task:");
+        int taskNumber = input.nextInt();
+        Task taskSelected = schedule.getTasks().get(taskNumber - 1);
+        System.out.println("\nSelect an action:\n");
+        System.out.println("\trm--task          -> Delete Task");
+        System.out.println("\tcp--task          -> Mark Task as Complete");
+        System.out.println("\tun--task          -> Mark Task as Incomplete");
+        String modifyTaskAction = input.next();
+        if (modifyTaskAction.equals("rm--task")) {
+            schedule.removeTask(taskSelected);
+            System.out.println("Task Deleted!");
+        } else if (modifyTaskAction.equals("cp--task")) {
+            taskSelected.completeTask();
+            System.out.println("Task Marked Completed!");
+        } else if (modifyTaskAction.equals("un--task")) {
+            taskSelected.undoTask();
+        }
+    }
 
 }
 
