@@ -22,10 +22,16 @@ public class Task {
         this.teachingAssistant = ta;
     }
 
+    // REQUIRES: this.status must already be false
+    // MODIFIES: this
+    // EFFECTS: this.status is made true
     public void completeTask() {
         this.status = true;
     }
 
+    // REQUIRES: this.status must already be true
+    // MODIFIES: this
+    // EFFECTS: this.status is made false
     public void undoTask() {
         this.status = false;
     }

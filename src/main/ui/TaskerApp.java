@@ -24,9 +24,9 @@ public class TaskerApp {
         String command;
 
         init();
-
+        System.out.println("Welcome to (TA)sker");
         while (running) {
-            mainMenu();
+            selectModeMenu();
             command = input.next();
             command = command.toLowerCase();
 
@@ -41,25 +41,44 @@ public class TaskerApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user commands
     private void processCommands(String command) {
-        if (command.equals("mk--task")) {
-            makeTask();
-        } else if (command.equals("mk--lab")) {
-            makeLab();
-        } else if (command.equals("mk--tutorial")) {
-            makeTutorial();
+        if (command.equals("cr")) {
+            createModeMenu();
+            String createModeSelect = input.next();
+            if (createModeSelect.equals("cr--task")) {
+                makeTask();
+            } else if (createModeSelect.equals("cr--lab")) {
+                makeLab();
+            } else if (createModeSelect.equals("cr--tutorial")) {
+                makeTutorial();
+            }
+
+        } else if (command.equals("dp")) {
+            displayModeMenu();
+            String displayModeSelect = input.next();
+            if (displayModeSelect.equals("dp--task")) {
+                displayTasks();
+            } else if (displayModeSelect.equals("dp--lab")) {
+                displayLabs();
+            } else if (displayModeSelect.equals("dp-tutorials")) {
+                displayTutorials();
+            }
         }
     }
 
-    private void mainMenu() {
-        System.out.println("\n Welcome to Tasker. Please select one of the following commands:\n");
-        System.out.println("\t mk--task -> Create Task");
-        System.out.println("\t mk--lab -> Create Lab");
-        System.out.println("\t mk--tutorial -> Create Tutorial");
-        System.out.println("\t quit -> Exit Application");
+    // EFFECTS: displays main menu
+    //private void mainMenu() {
+        //System.out.println("\t mk--task         -> Create Task");
+        //System.out.println("\t mk--lab          -> Create Lab");
+        //System.out.println("\t mk--tutorial     -> Create Tutorial");
+        //System.out.println("\t quit             -> Exit Application");
 
-    }
 
+
+    // MODIFIES: this
+    // EFFECTS: creates a new task with specified name
     private void makeTask() {
         Task newTask = new Task("");
         System.out.println("Please enter task name: ");
@@ -67,7 +86,6 @@ public class TaskerApp {
         newTask.setName(name);
 
         schedule.addTask(newTask);
-        // TODO: For loop to print out names for each task.
 
         System.out.println("Tasks scheduled:");
         for (int i = 0; i < schedule.getTasks().size(); i++) {
@@ -76,14 +94,17 @@ public class TaskerApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new lab with specified course name,
+    // course number, and lab name
     private void makeLab() {
         Lab newLab = new Lab("", 0, "");
         System.out.println("Please enter course name: ");
-        String courseName = input.nextLine();
+        String courseName = input.next();
         System.out.println("Please enter course number: ");
         int courseNum = input.nextInt();
         System.out.println("Please enter lab name");
-        String labName = input.nextLine();
+        String labName = input.next();
         newLab.setCourseName(courseName);
         newLab.setCourseNum(courseNum);
         newLab.setLabName(labName);
@@ -93,14 +114,17 @@ public class TaskerApp {
         // TODO: For loop to print out names for each lab.
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new tutorial with specified course name,
+    // course number, and tutorial name
     private void makeTutorial() {
         Tutorial newTutorial = new Tutorial("", 0, "");
         System.out.println("Please enter course name: ");
-        String courseName = input.nextLine();
+        String courseName = input.next();
         System.out.println("Please enter course number: ");
         int courseNum = input.nextInt();
         System.out.println("Please enter tutorial name");
-        String tutorialName = input.nextLine();
+        String tutorialName = input.next();
         newTutorial.setCourseName(courseName);
         newTutorial.setCourseNum(courseNum);
         newTutorial.setTutorialName(tutorialName);
@@ -110,26 +134,32 @@ public class TaskerApp {
         // TODO: For loop to print out names for each Tutorial.
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes schedule and Scanner
     private void init() {
         schedule = new Schedule("Schedule 1");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
 
+    // EFFECTS: displays list of user options to enter a mode
     private void selectModeMenu() {
         System.out.println("\nSelect a mode:\n");
-        System.out.println("\t Create");
-        System.out.println("\t Display");
-        System.out.println("\t Modify");
+        System.out.println("\tcr       -> Create Mode");
+        System.out.println("\tdp       -> Display Mode");
+        System.out.println("\tquit     -> Quit Application");
+        // TODO System.out.println("\t Modify");
     }
 
+    // EFFECTS: displays list of user options when in Create mode
     private void createModeMenu() {
         System.out.println("\nSelect an action\n");
-        System.out.println("\tmk--task          -> Create New Task");
-        System.out.println("\tmk--lab           -> Create new Lab");
-        System.out.println("\tmk--tutorial      -> Create new Tutorial");
+        System.out.println("\tcr--task          -> Create New Task");
+        System.out.println("\tcr--lab           -> Create new Lab");
+        System.out.println("\tcr--tutorial      -> Create new Tutorial");
     }
 
+    // EFFECTS: displays list of user options when in Display mode
     private void displayModeMenu() {
         System.out.println("\nSelect an action\n");
         System.out.println("\tdp--task          -> Display Tasks");
@@ -137,6 +167,7 @@ public class TaskerApp {
         System.out.println("\tdp--tutorial      -> Display Tutorials");
     }
 
+    // EFFECTS: displays list of user options when in Modify mode
     private void modifyModeMenu() {
         System.out.println("\nSelect an action\n");
         System.out.println("\tmf--task          -> Modify Task");
@@ -144,6 +175,7 @@ public class TaskerApp {
         System.out.println("\tmf--tutorial      -> Modify Tutorial");
     }
 
+    // EFFECTS: prints out names of all the tasks currently in the schedule
     private void displayTasks() {
         System.out.println("Tasks scheduled:");
         for (int i = 0; i < schedule.getTasks().size(); i++) {
@@ -151,6 +183,8 @@ public class TaskerApp {
         }
     }
 
+    // EFFECTS: prints out course names, course numbers, and lab names
+    // of all the labs currently in the schedule
     private void displayLabs() {
         System.out.println("Labs scheduled:");
         for (int i = 0; i < schedule.getLabs().size(); i++) {
@@ -161,6 +195,8 @@ public class TaskerApp {
         }
     }
 
+    // EFFECTS: prints out course names, course numbers, and lab names
+    // of all the tutorials currently in the schedule
     private void displayTutorials() {
         System.out.println("Tutorials scheduled:");
         for (int i = 0; i < schedule.getTutorials().size(); i++) {
@@ -169,6 +205,10 @@ public class TaskerApp {
                               schedule.getTutorials().get(i).getTutorialName(),
                               "\n");
         }
+    }
+
+    private void completeTask() {
+
     }
 }
 

@@ -30,8 +30,18 @@ class ScheduleTest {
     }
 
     @Test
+    public void testAddTaskBorder() {
+        for (int i = 0; i <= 99; i++) {
+            Task trialTask = new Task("trial");
+            schedule.addTask(trialTask);
+        }
+
+        assertEquals(100, schedule.getTasks().size());
+    }
+
+    @Test
     public void testAddTaskAtLimit() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i <= 101; i++) {
             Task trialTask = new Task("trial");
             schedule.addTask(trialTask);
         }
