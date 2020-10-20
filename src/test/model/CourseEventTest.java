@@ -20,43 +20,57 @@ public class CourseEventTest {
     @Test
     public void testSetCourseName() {
         lab1.setCourseName("newCourseName");
+        tutorial1.setCourseName("newCourseName");
 
         assertEquals("newCourseName", lab1.getCourseName());
+        assertEquals("newCourseName", tutorial1.getCourseName());
+
     }
 
     @Test
     public void testSetCourseNum() {
         lab1.setCourseNum(2);
+        tutorial1.setCourseNum(4);
 
         assertEquals(2, lab1.getCourseNum());
+        assertEquals(4, tutorial1.getCourseNum());
     }
 
     @Test
     public void testSetSectionName() {
         lab1.setSectionName("newLabName");
+        tutorial1.setSectionName("newTutorialName");
 
         assertEquals("newLabName", lab1.getSectionName());
+        assertEquals("newTutorialName", tutorial1.getSectionName());
+
     }
 
     @Test
     public void testSetBuilding() {
         lab1.setBuilding("HENN");
+        tutorial1.setBuilding("ICCS");
 
         assertEquals("HENN", lab1.getBuilding());
+        assertEquals("ICCS", tutorial1.getBuilding());
     }
 
     @Test
     public void testSetRoomNumber() {
         lab1.setRoomNumber(0);
+        tutorial1.setRoomNumber(10);
 
         assertEquals(0, lab1.getRoomNumber());
+        assertEquals(10, tutorial1.getRoomNumber());
     }
 
     @Test
     public void testSetTime() {
         lab1.setTime("13:00");
+        tutorial1.setTime("15:30");
 
         assertEquals("13:00", lab1.getTime());
+        assertEquals("15:30", tutorial1.getTime());
     }
 
 }
