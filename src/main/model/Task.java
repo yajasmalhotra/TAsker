@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Assign tasks to teaching assistants
-public class Task {
+public class Task implements Writable {
 
     private String name;
     private String time;
@@ -62,5 +65,17 @@ public class Task {
 
     public boolean getStatus() {
         return status;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("time", time);
+        json.put("teachingAssistant", teachingAssistant);
+        json.put("course", course);
+        json.put("status", status);
+
+        return json;
     }
 }

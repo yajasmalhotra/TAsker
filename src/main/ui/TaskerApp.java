@@ -120,11 +120,11 @@ public class TaskerApp {
         String courseName = input.next();
         System.out.println("Please enter course number: ");
         int courseNum = input.nextInt();
-        System.out.println("Please enter lab name");
-        String labName = input.next();
+        System.out.println("Please enter section name: ");
+        String sectionName = input.next();
         newLab.setCourseName(courseName);
         newLab.setCourseNum(courseNum);
-        newLab.setLabName(labName);
+        newLab.setSectionName(sectionName);
 
         schedule.addLab(newLab);
 
@@ -140,11 +140,11 @@ public class TaskerApp {
         String courseName = input.next();
         System.out.println("Please enter course number: ");
         int courseNum = input.nextInt();
-        System.out.println("Please enter tutorial name: ");
-        String tutorialName = input.next();
+        System.out.println("Please enter section name: ");
+        String sectionName = input.next();
         newTutorial.setCourseName(courseName);
         newTutorial.setCourseNum(courseNum);
-        newTutorial.setTutorialName(tutorialName);
+        newTutorial.setSectionName(sectionName);
 
         schedule.addTutorial(newTutorial);
 
@@ -211,7 +211,7 @@ public class TaskerApp {
                     ((i + 1) + ")"),
                     schedule.getLabs().get(i).getCourseName(),
                     schedule.getLabs().get(i).getCourseNum(),
-                    schedule.getLabs().get(i).getLabName());
+                    schedule.getLabs().get(i).getSectionName());
         }
     }
 
@@ -224,7 +224,7 @@ public class TaskerApp {
                     ((i + 1) + ")"),
                     schedule.getTutorials().get(i).getCourseName(),
                     schedule.getTutorials().get(i).getCourseNum(),
-                    schedule.getTutorials().get(i).getTutorialName());
+                    schedule.getTutorials().get(i).getSectionName());
         }
     }
 

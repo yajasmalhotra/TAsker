@@ -5,13 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LabTest {
+public class CourseEventTest {
 
-    Lab lab1;
+    CourseEvent lab1;
+    CourseEvent tutorial1;
 
     @BeforeEach
     public void setup() {
         lab1 = new Lab("lab", 1, "lab 1");
+        tutorial1 = new Tutorial("tutorial", 1, "tutorial 1");
 
     }
 
@@ -30,10 +32,10 @@ public class LabTest {
     }
 
     @Test
-    public void testSetLabName() {
-        lab1.setLabName("newLabName");
+    public void testSetSectionName() {
+        lab1.setSectionName("newLabName");
 
-        assertEquals("newLabName", lab1.getLabName());
+        assertEquals("newLabName", lab1.getSectionName());
     }
 
     @Test
@@ -56,4 +58,5 @@ public class LabTest {
 
         assertEquals("13:00", lab1.getTime());
     }
+
 }
