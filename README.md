@@ -16,7 +16,6 @@ system.
 
 
 <h4>User Stories:</h4>
-<h5> Phase 1 </h5>
 - As a user, I want to be able to create tasks/labs/tutorials for a course of 
 my choice.
 - As a user, I want to view all the tasks/labs/tutorials I have created. 
