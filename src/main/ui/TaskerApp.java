@@ -196,9 +196,12 @@ public class TaskerApp {
     private void displayTasks() {
         System.out.println("Tasks scheduled:");
         for (int i = 0; i < schedule.getTasks().size(); i++) {
-            System.out.printf("%s %s \n",
+            System.out.printf("%s %s %s %s %s\n",
                     ((i + 1) + ")"),
-                    schedule.getTasks().get(i).getName());
+                    schedule.getTasks().get(i).getName() + "\n",
+                    "\tTime: " + schedule.getTasks().get(i).getTime() + "\n",
+                    "\tTA: " + schedule.getTasks().get(i).getTeachingAssistant() + "\n",
+                    "\tStatus: " + schedule.getTasks().get(i).getStatus());
         }
     }
 
@@ -233,14 +236,14 @@ public class TaskerApp {
     // selected task can then be deleted, marked as complete/incomplete
     private void modifyTask() {
         displayTasks();
-        System.out.println();
-        System.out.printf("Select a task:");
+        System.out.println("Select a task:");
         int taskNumber = input.nextInt();
         Task taskSelected = schedule.getTasks().get(taskNumber - 1);
         System.out.println("\nSelect an action:\n");
-        System.out.println("\trm--task          -> Delete Task");
         System.out.println("\tcp--task          -> Mark Task as Complete");
         System.out.println("\tun--task          -> Mark Task as Incomplete");
+        System.out.println("\ted--task          -> Edit Task Details");
+        System.out.println("\trm--task          -> Delete Task");
         String modifyTaskAction = input.next();
         if (modifyTaskAction.equals("rm--task")) {
             schedule.removeTask(taskSelected);
@@ -250,8 +253,53 @@ public class TaskerApp {
             System.out.println("Task Marked Completed!");
         } else if (modifyTaskAction.equals("un--task")) {
             taskSelected.undoTask();
+        } else if (modifyTaskAction.equals("ed--task")) {
+            editTask(taskSelected);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows the user to edit individual properties of a selected task
+    private void editTask(Task taskSelected) {
+        System.out.println("\nSelect an action:\n");
+        System.out.println("\tch--name          -> Change task name");
+        System.out.println("\tch--time          -> Change task time");
+        System.out.println("\tch--ta            -> Change teaching assistant");
+        String taskCommand = input.next();
+        if (taskCommand.equals("ch--name")) {
+            System.out.println("Enter new task name: ");
+            String newName = input.next();
+            taskSelected.setName(newName);
+        } else if (taskCommand.equals("ch--time")) {
+            System.out.println("Enter new time: ");
+            String newTime = input.next();
+            taskSelected.setTime(newTime);
+        } else if (taskCommand.equals("ch--ta")) {
+            System.out.println("Enter new TA name: ");
+            String newTA = input.next();
+            taskSelected.setTeachingAssistant(newTA);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: allows the user to select a lab from the list of labs;
+    // selected task can then be deleted or edited
+    private void modifyLab() {
+        displayLabs();
+        System.out.println("Select a lab:");
+        int labNumber = input.nextInt();
+        Task labSelected = schedule.getTasks().get(labNumber - 1);
+        System.out.println("\nSelect an action:\n");
+        System.out.println("\tch--cname         -> Change Lab Course Name");
+        System.out.println("\tch--cnum          -> Change Lab Course Number");
+        System.out.println("\tch--sect          -> Change Lab Section");
+        System.out.println("\tch--time          -> Change Lab Time");
+        System.out.println("\tch--ta            -> Change Lab Teaching Assistant");
+        System.out.println("\tch--building      -> Change Lab Location (Building)");
+        System.out.println("\tch--room          -> Change Lab Location (Room)");
+
+        String modifyLabAction = input.next();
+
+    }
 }
 

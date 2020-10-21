@@ -48,11 +48,24 @@ public class Task implements Writable {
     }
 
     public String getTime() {
-        return time;
+        String error = "Not Assigned";
+
+
+        if (time == null) {
+            return error;
+        } else {
+            return time;
+        }
     }
 
     public String getTeachingAssistant() {
-        return teachingAssistant;
+        String error = "Not Assigned";
+
+        if (teachingAssistant == null) {
+            return error;
+        } else {
+            return teachingAssistant;
+        }
     }
 
     public String getCourse() {
