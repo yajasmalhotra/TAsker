@@ -64,7 +64,7 @@ public class TaskerApp {
         if (modifyModeSelect.equals("mf--task")) {
             modifyTask();
         } else if (modifyModeSelect.equals("mf--lab")) {
-            // TODO
+            modifyLab();
         } else if (modifyModeSelect.equals(("mf--tutorial"))) {
             // TODO
         }
@@ -210,11 +210,14 @@ public class TaskerApp {
     private void displayLabs() {
         System.out.println("Labs scheduled:");
         for (int i = 0; i < schedule.getLabs().size(); i++) {
-            System.out.printf("%s %s %d %s \n",
+            System.out.printf("%s %s %s %s %s %s \n",
                     ((i + 1) + ")"),
-                    schedule.getLabs().get(i).getCourseName(),
-                    schedule.getLabs().get(i).getCourseNum(),
-                    schedule.getLabs().get(i).getSectionName());
+                    "\tCourse name: "     + schedule.getLabs().get(i).getCourseName() + "\n",
+                    "\tCourse number: "   + schedule.getLabs().get(i).getCourseNum() + "\n",
+                    "\tSection name: "    + schedule.getLabs().get(i).getSectionName() + "\n",
+                    "\tTime: "            + schedule.getLabs().get(i).getTime() + "\n",
+                    "\tLocation: "        + schedule.getLabs().get(i).getBuilding() + " "
+                                        + schedule.getLabs().get(i).getRoomNumber());
         }
     }
 
@@ -254,13 +257,13 @@ public class TaskerApp {
         } else if (modifyTaskAction.equals("un--task")) {
             taskSelected.undoTask();
         } else if (modifyTaskAction.equals("ed--task")) {
-            editTask(taskSelected);
+            editTaskDetails(taskSelected);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: allows the user to edit individual properties of a selected task
-    private void editTask(Task taskSelected) {
+    private void editTaskDetails(Task taskSelected) {
         System.out.println("\nSelect an action:\n");
         System.out.println("\tch--name          -> Change task name");
         System.out.println("\tch--time          -> Change task time");
@@ -288,18 +291,47 @@ public class TaskerApp {
         displayLabs();
         System.out.println("Select a lab:");
         int labNumber = input.nextInt();
-        Task labSelected = schedule.getTasks().get(labNumber - 1);
+        Lab labSelected = schedule.getLabs().get(labNumber - 1);
         System.out.println("\nSelect an action:\n");
         System.out.println("\tch--cname         -> Change Lab Course Name");
         System.out.println("\tch--cnum          -> Change Lab Course Number");
         System.out.println("\tch--sect          -> Change Lab Section");
         System.out.println("\tch--time          -> Change Lab Time");
-        System.out.println("\tch--ta            -> Change Lab Teaching Assistant");
-        System.out.println("\tch--building      -> Change Lab Location (Building)");
+        System.out.println("\tch--bldg          -> Change Lab Location (Building)");
         System.out.println("\tch--room          -> Change Lab Location (Room)");
 
-        String modifyLabAction = input.next();
+        editLabDetails(labSelected);
+    }
 
+    // MODIFIES: this
+    // EFFECTS: allows the user to edit individual properties of a selected lab
+    private void editLabDetails(Lab labSelected) {
+        String modifyLabAction = input.next();
+        if (modifyLabAction.equals("ch--cname")) {
+            System.out.println("Enter new course name: ");
+            String newName = input.next();
+            labSelected.setCourseName(newName);
+        } else if (modifyLabAction.equals("ch--cnum")) {
+            System.out.println("Enter new course number: ");
+            int newNum = input.nextInt();
+            labSelected.setCourseNum(newNum);
+        } else if (modifyLabAction.equals("ch--sect")) {
+            System.out.println("Enter new section name: ");
+            String newSection = input.next();
+            labSelected.setSectionName(newSection);
+        } else if (modifyLabAction.equals("ch--time")) {
+            System.out.println("Enter new lab time: ");
+            String newTime = input.next();
+            labSelected.setTime(newTime);
+        } else if (modifyLabAction.equals("ch--bldg")) {
+            System.out.println("Enter new lab building: ");
+            String newBuilding = input.next();
+            labSelected.setBuilding(newBuilding);
+        } else if (modifyLabAction.equals("ch--room")) {
+            System.out.println("Enter new lab room: ");
+            int newRoom = input.nextInt();
+            labSelected.setRoomNumber(newRoom);
+        }
     }
 }
 
