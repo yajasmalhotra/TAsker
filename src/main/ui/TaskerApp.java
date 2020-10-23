@@ -45,14 +45,16 @@ public class TaskerApp {
     // MODIFIES: this
     // EFFECTS: processes user commands
     private void processCommands(String command) {
-        if (command.equals("cr")) {
-            createItem();
-
-        } else if (command.equals("dp")) {
-            displayItem();
-
-        } else if (command.equals("mf")) {
-            modifyItem();
+        switch (command) {
+            case "cr":
+                createItem();
+                break;
+            case "dp":
+                displayItem();
+                break;
+            case "mf":
+                modifyItem();
+                break;
         }
     }
 
@@ -61,12 +63,16 @@ public class TaskerApp {
     private void modifyItem() {
         modifyModeMenu();
         String modifyModeSelect = input.next();
-        if (modifyModeSelect.equals("mf--task")) {
-            modifyTask();
-        } else if (modifyModeSelect.equals("mf--lab")) {
-            modifyLab();
-        } else if (modifyModeSelect.equals(("mf--tutorial"))) {
-            // TODO
+        switch (modifyModeSelect) {
+            case "mf--task":
+                modifyTask();
+                break;
+            case "mf--lab":
+                modifyLab();
+                break;
+            case ("mf--tutorial"):
+                modifyTutorial();
+                break;
         }
     }
 
@@ -75,12 +81,16 @@ public class TaskerApp {
     private void displayItem() {
         displayModeMenu();
         String displayModeSelect = input.next();
-        if (displayModeSelect.equals("dp--task")) {
-            displayTasks();
-        } else if (displayModeSelect.equals("dp--lab")) {
-            displayLabs();
-        } else if (displayModeSelect.equals("dp--tutorial")) {
-            displayTutorials();
+        switch (displayModeSelect) {
+            case "dp--task":
+                displayTasks();
+                break;
+            case "dp--lab":
+                displayLabs();
+                break;
+            case "dp--tutorial":
+                displayTutorials();
+                break;
         }
     }
 
@@ -88,12 +98,16 @@ public class TaskerApp {
     private void createItem() {
         createModeMenu();
         String createModeSelect = input.next();
-        if (createModeSelect.equals("cr--task")) {
-            makeTask();
-        } else if (createModeSelect.equals("cr--lab")) {
-            makeLab();
-        } else if (createModeSelect.equals("cr--tutorial")) {
-            makeTutorial();
+        switch (createModeSelect) {
+            case "cr--task":
+                makeTask();
+                break;
+            case "cr--lab":
+                makeLab();
+                break;
+            case "cr--tutorial":
+                makeTutorial();
+                break;
         }
     }
 
@@ -333,5 +347,54 @@ public class TaskerApp {
             labSelected.setRoomNumber(newRoom);
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: allows the user to select a tutorial from the list of labs;
+    // selected task can then be deleted or edited
+    private void modifyTutorial() {
+        displayTutorials();
+        System.out.println("Select a tutorial:");
+        int tutorialNumber = input.nextInt();
+        Tutorial tutorialSelected = schedule.getTutorials().get(tutorialNumber - 1);
+        System.out.println("\nSelect an action:\n");
+        System.out.println("\tch--cname         -> Change Tutorial Course Name");
+        System.out.println("\tch--cnum          -> Change Tutorial Course Number");
+        System.out.println("\tch--sect          -> Change Tutorial Section");
+        System.out.println("\tch--time          -> Change Tutorial Time");
+        System.out.println("\tch--bldg          -> Change Tutorial Location (Building)");
+        System.out.println("\tch--room          -> Change Tutorial Location (Room)");
+
+        editTutorialDetails(tutorialSelected);
+    }
+
+    private void editTutorialDetails(Tutorial tutorialSelected) {
+        String modifyTutorialAction = input.next();
+        if (modifyTutorialAction.equals("ch--cname")) {
+            System.out.println("Enter new course name: ");
+            String newName = input.next();
+            tutorialSelected.setCourseName(newName);
+        } else if (modifyTutorialAction.equals("ch--cnum")) {
+            System.out.println("Enter new course number: ");
+            int newNum = input.nextInt();
+            tutorialSelected.setCourseNum(newNum);
+        } else if (modifyTutorialAction.equals("ch--sect")) {
+            System.out.println("Enter new section name: ");
+            String newSection = input.next();
+            tutorialSelected.setSectionName(newSection);
+        } else if (modifyTutorialAction.equals("ch--time")) {
+            System.out.println("Enter new tutorial time: ");
+            String newTime = input.next();
+            tutorialSelected.setTime(newTime);
+        } else if (modifyTutorialAction.equals("ch--bldg")) {
+            System.out.println("Enter new tutorial building: ");
+            String newBuilding = input.next();
+            tutorialSelected.setBuilding(newBuilding);
+        } else if (modifyTutorialAction.equals("ch--room")) {
+            System.out.println("Enter new tutorial room: ");
+            int newRoom = input.nextInt();
+            tutorialSelected.setRoomNumber(newRoom);
+        }
+    }
+
 }
 
