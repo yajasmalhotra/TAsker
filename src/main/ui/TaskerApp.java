@@ -240,11 +240,14 @@ public class TaskerApp {
     private void displayTutorials() {
         System.out.println("Tutorials scheduled:");
         for (int i = 0; i < schedule.getTutorials().size(); i++) {
-            System.out.printf("%s %s %d %s \n",
+            System.out.printf("%s %s %s %s %s %s \n",
                     ((i + 1) + ")"),
-                    schedule.getTutorials().get(i).getCourseName(),
-                    schedule.getTutorials().get(i).getCourseNum(),
-                    schedule.getTutorials().get(i).getSectionName());
+                    "\tCourse name: "     + schedule.getTutorials().get(i).getCourseName() + "\n",
+                    "\tCourse number: "   + schedule.getTutorials().get(i).getCourseNum() + "\n",
+                    "\tSection name: "    + schedule.getTutorials().get(i).getSectionName() + "\n",
+                    "\tTime: "            + schedule.getTutorials().get(i).getTime() + "\n",
+                    "\tLocation: "        + schedule.getTutorials().get(i).getBuilding() + " "
+                            + schedule.getTutorials().get(i).getRoomNumber());
         }
     }
 
@@ -333,7 +336,13 @@ public class TaskerApp {
             System.out.println("Enter new section name: ");
             String newSection = input.next();
             labSelected.setSectionName(newSection);
-        } else if (modifyLabAction.equals("ch--time")) {
+        } else {
+            editLabDetailsPart2(labSelected, modifyLabAction);
+        }
+    }
+
+    private void editLabDetailsPart2(Lab labSelected, String modifyLabAction) {
+        if (modifyLabAction.equals("ch--time")) {
             System.out.println("Enter new lab time: ");
             String newTime = input.next();
             labSelected.setTime(newTime);
@@ -381,7 +390,13 @@ public class TaskerApp {
             System.out.println("Enter new section name: ");
             String newSection = input.next();
             tutorialSelected.setSectionName(newSection);
-        } else if (modifyTutorialAction.equals("ch--time")) {
+        } else {
+            editTutorialDetailsPart2(tutorialSelected, modifyTutorialAction);
+        }
+    }
+
+    private void editTutorialDetailsPart2(Tutorial tutorialSelected, String modifyTutorialAction) {
+        if (modifyTutorialAction.equals("ch--time")) {
             System.out.println("Enter new tutorial time: ");
             String newTime = input.next();
             tutorialSelected.setTime(newTime);

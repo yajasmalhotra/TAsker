@@ -69,7 +69,13 @@ public class Task implements Writable {
     }
 
     public String getCourse() {
-        return course;
+        String error = "Not Assigned";
+
+        if (course == null) {
+            return error;
+        } else {
+            return course;
+        }
     }
 
     public void setCourse(String course) {

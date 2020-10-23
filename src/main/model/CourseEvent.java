@@ -43,7 +43,13 @@ public abstract class CourseEvent implements Writable {
     }
 
     public String getTime() {
-        return time;
+        String error = "Not Assigned";
+
+        if (time == null) {
+            return error;
+        } else {
+            return time;
+        }
     }
 
     public int getRoomNumber() {
@@ -51,11 +57,23 @@ public abstract class CourseEvent implements Writable {
     }
 
     public String getBuilding() {
-        return building;
+        String error = "Not Assigned";
+
+        if (building == null) {
+            return error;
+        } else {
+            return building;
+        }
     }
 
     public String getSectionName() {
-        return sectionName;
+        String error = "Not Assigned";
+
+        if (sectionName == null) {
+            return error;
+        } else {
+            return sectionName;
+        }
     }
 
     public int getCourseNum() {
@@ -63,7 +81,13 @@ public abstract class CourseEvent implements Writable {
     }
 
     public String getCourseName() {
-        return courseName;
+        String error = "Not Assigned";
+
+        if (courseName == null) {
+            return error;
+        } else {
+            return courseName;
+        }
     }
 
     @Override
