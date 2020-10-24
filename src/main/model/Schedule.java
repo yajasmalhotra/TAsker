@@ -1,8 +1,12 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class Schedule {
+public class Schedule implements Writable {
 
     private static ArrayList<Task> tasks;
     private static ArrayList<Lab> labs;
@@ -11,9 +15,9 @@ public class Schedule {
 
     public Schedule(String name) {
         this.name = name;
-        tasks = new ArrayList<Task>();
-        labs = new ArrayList<Lab>();
-        tutorials = new ArrayList<Tutorial>();
+        tasks = new ArrayList<>();
+        labs = new ArrayList<>();
+        tutorials = new ArrayList<>();
     }
 
     public void addTask(Task task) {
@@ -53,5 +57,45 @@ public class Schedule {
     public ArrayList<Tutorial> getTutorials() {
         return tutorials;
     }
+
+    @Override
+    public JSONObject toJson() {
+
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("tasks", tasksToJson());
+        json.put("labs", labsToJson());
+        json.put("tutorials", tutorialToJson());
+        return json;
+    }
+
+    private JSONArray tasksToJson() {
+        JSONArray taskJsonArray = new JSONArray();
+
+        for (Task task : tasks) {
+            taskJsonArray.put(task.toJson());
+        }
+        return taskJsonArray;
+    }
+
+    private JSONArray labsToJson() {
+        JSONArray labJsonArray = new JSONArray();
+
+        for (Lab lab : labs) {
+            labJsonArray.put(lab.toJson());
+        }
+        return labJsonArray;
+    }
+
+    private JSONArray tutorialToJson() {
+        JSONArray tutorialJsonArray = new JSONArray();
+
+        for (Tutorial tutorial : tutorials) {
+            tutorialJsonArray.put(tutorial.toJson());
+        }
+        return tutorialJsonArray;
+    }
+
+
 
 }
