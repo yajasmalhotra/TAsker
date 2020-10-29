@@ -64,10 +64,12 @@ public class JsonReader {
     // EFFECTS: parses tasks from JSON object and adds them to schedule
     private void addTasks(Schedule schedule, JSONObject jsonObject) {
         JSONArray taskJsonArray = jsonObject.getJSONArray("tasks");
+
         for (Object json : taskJsonArray) {
             JSONObject nextTask = (JSONObject) json;
-            addTasks(schedule, nextTask);
+            addTask(schedule, nextTask);
         }
+
     }
 
     // MODIFIES: schedule
@@ -86,7 +88,7 @@ public class JsonReader {
         JSONArray labJsonArray = jsonObject.getJSONArray("labs");
         for (Object json : labJsonArray) {
             JSONObject nextLab = (JSONObject) json;
-            addLabs(schedule, nextLab);
+            addLab(schedule, nextLab);
         }
     }
 
@@ -106,7 +108,7 @@ public class JsonReader {
         JSONArray tutorialJsonArray = jsonObject.getJSONArray("labs");
         for (Object json : tutorialJsonArray) {
             JSONObject nextTutorial = (JSONObject) json;
-            addTutorials(schedule, nextTutorial);
+            addTutorial(schedule, nextTutorial);
         }
     }
 

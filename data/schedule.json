@@ -1,11 +1,14 @@
 {
-    "tasks": [{
-    "name": "Task 1",
-    "status": false
+    "labs": [{
+        "sectionName": "L1B",
+        "courseName": "CPSC",
+        "roomNumber": 0,
+        "courseNum": 210
     }],
-
-    "labs": [],
     "tutorials": [],
-    "name": "Schedule 1"
-
+    "name": "Schedule 1",
+    "tasks": [{
+        "name": "Taks 1",
+        "status": false
+    }]
 }
