@@ -4,17 +4,27 @@ import model.Lab;
 import model.Schedule;
 import model.Task;
 import model.Tutorial;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Course administration application. Allows the user to add/remove/modify
 // course-related tasks, labs, and tutorials to a schedule.
 public class TaskerApp {
 
+    private static final String JSON_STORE = "./data/schedule.json";
     private Schedule schedule;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    public TaskerApp() {
+    public TaskerApp() throws FileNotFoundException {
+        schedule = new Schedule("Main");
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
         runTasker();
     }
 
@@ -54,6 +64,12 @@ public class TaskerApp {
                 break;
             case "mf":
                 modifyItem();
+                break;
+            case "sf" :
+                saveSchedule();
+                break;
+            case "ld" :
+                loadSchedule();
                 break;
         }
     }
@@ -179,6 +195,8 @@ public class TaskerApp {
         System.out.println("\tcr       -> Create Mode");
         System.out.println("\tdp       -> Display Mode");
         System.out.println("\tmf       -> Modify Mode");
+        System.out.println("\tsf       -> Save File");
+        System.out.println("\tld       -> Load File");
         System.out.println("\tquit     -> Quit Application");
     }
 
@@ -411,5 +429,27 @@ public class TaskerApp {
         }
     }
 
+    // EFFECTS: saves the schedule to file
+    private void saveSchedule() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(schedule);
+            jsonWriter.close();
+            System.out.println("Saved " + schedule.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads schedule from file
+    private void loadSchedule() {
+        try {
+            schedule = jsonReader.read();
+            System.out.println("Loaded " + schedule.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }
 

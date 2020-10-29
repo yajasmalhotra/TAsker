@@ -20,6 +20,10 @@ public class Schedule implements Writable {
         tutorials = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void addTask(Task task) {
         if (tasks.size() < 100) {           // added task limit of 100 to add branching
             tasks.add(task);

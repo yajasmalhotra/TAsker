@@ -1,0 +1,26 @@
+{
+  "tasks": [
+    {
+      "name": "Seminar",
+      "status": false
+    },
+    {
+      "name": "Meeting",
+      "status": false
+    }
+  ],
+  "labs": [{
+    "sectionName": "L1B",
+    "courseName": "CPSC",
+    "roomNumber": 0,
+    "courseNum": 121
+  }],
+  "tutorials": [{
+    "sectionName": "T1H",
+    "courseName": "CPSC",
+    "roomNumber": 0,
+    "courseNum": 110
+  }],
+  "name": "Main"
+
+}
