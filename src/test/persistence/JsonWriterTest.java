@@ -24,37 +24,37 @@ public class JsonWriterTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptySchedule() {
         try {
             Schedule schedule = new Schedule("Main");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptySchedule.json");
             writer.open();
             writer.write(schedule);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptySchedule.json");
             schedule = reader.read();
             assertEquals("Main", schedule.getName());
-            assertEquals(2, schedule.getTasks().size());
+            assertEquals(0, schedule.getTasks().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralSchedule() {
         try {
             Schedule schedule = new Schedule("Main");
             schedule.addTask(new Task("Task 1"));
             schedule.addTask(new Task("Task 2"));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralSchedule.json");
             writer.open();
             writer.write(schedule);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralSchedule.json");
             schedule = reader.read();
-            assertEquals("My work room", schedule.getName());
+            assertEquals("Main", schedule.getName());
             List<Task> tasks = schedule.getTasks();
             assertEquals(2, schedule.getTasks().size());
             //checkTask("Task 1");

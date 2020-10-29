@@ -24,7 +24,7 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyWSchedule() {
         JsonReader reader = new JsonReader("./data/TestReaderEmptySchedule.json");
         try {
             Schedule schedule = reader.read();
@@ -36,7 +36,7 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralSchedule() {
         JsonReader reader = new JsonReader("./data/TestReaderGeneralSchedule.json");
         try {
             Schedule schedule = reader.read();

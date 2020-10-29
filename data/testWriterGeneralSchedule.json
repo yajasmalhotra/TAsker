@@ -1,0 +1,15 @@
+{
+    "labs": [],
+    "tutorials": [],
+    "name": "Main",
+    "tasks": [
+        {
+            "name": "Task 1",
+            "status": false
+        },
+        {
+            "name": "Task 2",
+            "status": false
+        }
+    ]
+}
