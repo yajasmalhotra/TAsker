@@ -1,6 +1,16 @@
 {
-    "labs": [],
-    "tutorials": [],
+    "labs": [{
+        "sectionName": "Test",
+        "courseName": "Lab 1",
+        "roomNumber": 0,
+        "courseNum": 0
+    }],
+    "tutorials": [{
+        "sectionName": "Test",
+        "courseName": "Tutorial 1",
+        "roomNumber": 0,
+        "courseNum": 0
+    }],
     "name": "Main",
     "tasks": [
         {

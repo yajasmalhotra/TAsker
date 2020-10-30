@@ -42,8 +42,8 @@ class JsonReaderTest extends JsonTest {
             Schedule schedule = reader.read();
             assertEquals("Main", schedule.getName());
             List<Task> tasks = schedule.getTasks();
-            assertEquals(2, tasks.size());
-            checkTask("Task 1");
+            assertEquals(1, tasks.size());
+            checkTask("Task 1", tasks.get(0));
 
         } catch (IOException e) {
             fail("Couldn't read from file");

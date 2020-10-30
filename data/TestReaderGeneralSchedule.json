@@ -15,7 +15,7 @@
   ],
   "tutorials": [
     {
-      "sectionName": "L1B",
+      "sectionName": "T1B",
       "courseName": "CPSC",
       "roomNumber": 0,
       "courseNum": 210
@@ -27,9 +27,9 @@
       "courseNum": 121
     }
   ],
-  "name": "Schedule 1",
+  "name": "Main",
   "tasks": [{
-    "name": "Tasks 1",
+    "name": "Task 1",
     "status": false
   }]
 }

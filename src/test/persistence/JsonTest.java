@@ -7,17 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonTest {
 
-    protected Task testTask;
-    protected Tutorial testTutorial;
+    public Task testTask;
+    public Tutorial testTutorial;
 
-    protected void checkTutorial(String courseName, int courseNum, String sectionName) {
-        assertEquals(courseName, testTutorial.getCourseName());
-        assertEquals(courseNum, testTutorial.getCourseNum());
-        assertEquals(sectionName, testTutorial.getSectionName());
+    protected void checkTutorial(String courseName, int courseNum, String sectionName, Tutorial tutorial) {
+        assertEquals(courseName, tutorial.getCourseName());
+        assertEquals(courseNum, tutorial.getCourseNum());
+        assertEquals(sectionName, tutorial.getSectionName());
     }
 
-    protected void checkTask(String name) {
-        assertEquals(name, testTask.getName());
+    protected void checkTask(String name, Task task) {
+        assertEquals(name, task.getName());
     }
 
 }
