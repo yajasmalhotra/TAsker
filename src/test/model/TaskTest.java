@@ -8,24 +8,36 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TaskTest {
 
     Task task1;
+    String error;
 
     @BeforeEach
     public void setup() {
         task1 = new Task("Task Test");
+        error = "Not Assigned";
     }
 
     @Test
-    public void testSetTime() {
+    public void testSetTimeNoError() {
         task1.setTime("13:00");
 
         assertEquals("13:00", task1.getTime());
     }
 
     @Test
-    public void testSetTeachingAssistant() {
+    public void testSetTimeError() {
+        assertEquals(error, task1.getTime());
+    }
+
+    @Test
+    public void testSetTeachingAssistantNoError() {
         task1.setTeachingAssistant("Andrew");
 
         assertEquals("Andrew", task1.getTeachingAssistant());
+    }
+
+    @Test
+    public void testSetTeachingAssistantError() {
+        assertEquals(error, task1.getTeachingAssistant());
     }
 
     @Test
@@ -44,17 +56,22 @@ public class TaskTest {
     }
 
     @Test
-    public void testSetName() {
+    public void testSetNameNoError() {
         task1.setName("New Name");
 
         assertEquals("New Name", task1.getName());
     }
 
     @Test
-    public void testSetCourse() {
+    public void testSetCourseNoError() {
         task1.setCourse("Course 1");
 
         assertEquals("Course 1", task1.getCourse());
+    }
+
+    @Test
+    public void testSetCourseError() {
+        assertEquals(error, task1.getCourse());
     }
 
 

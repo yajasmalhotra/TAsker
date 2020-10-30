@@ -3,9 +3,15 @@
         "sectionName": "L1B",
         "courseName": "CPSC",
         "roomNumber": 0,
+        "courseNum": 210,
+        "time": "12:30"
+    }],
+    "tutorials": [{
+        "sectionName": "L1B",
+        "courseName": "CPSC",
+        "roomNumber": 0,
         "courseNum": 210
     }],
-    "tutorials": [],
     "name": "Schedule 1",
     "tasks": [{
         "name": "Taks 1",
