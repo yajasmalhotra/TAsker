@@ -1,26 +1,35 @@
 {
-  "tasks": [
+  "labs": [
     {
-      "name": "Seminar",
-      "status": false
+      "sectionName": "L1B",
+      "courseName": "CPSC",
+      "roomNumber": 0,
+      "courseNum": 210
     },
     {
-      "name": "Meeting",
-      "status": false
+      "sectionName": "L1C",
+      "courseName": "CPSC",
+      "roomNumber": 0,
+      "courseNum": 121
     }
   ],
-  "labs": [{
-    "sectionName": "L1B",
-    "courseName": "CPSC",
-    "roomNumber": 0,
-    "courseNum": 121
-  }],
-  "tutorials": [{
-    "sectionName": "T1H",
-    "courseName": "CPSC",
-    "roomNumber": 0,
-    "courseNum": 110
-  }],
-  "name": "Main"
-
+  "tutorials": [
+    {
+      "sectionName": "L1B",
+      "courseName": "CPSC",
+      "roomNumber": 0,
+      "courseNum": 210
+    },
+    {
+      "sectionName": "T1Z",
+      "courseName": "CPSC",
+      "roomNumber": 0,
+      "courseNum": 121
+    }
+  ],
+  "name": "Schedule 1",
+  "tasks": [{
+    "name": "Tasks 1",
+    "status": false
+  }]
 }

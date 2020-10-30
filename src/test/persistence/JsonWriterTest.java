@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class JsonWriterTest {
+public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterInvalidFile() {
         try {
@@ -57,8 +57,8 @@ public class JsonWriterTest {
             assertEquals("Main", schedule.getName());
             List<Task> tasks = schedule.getTasks();
             assertEquals(2, schedule.getTasks().size());
-            //checkTask("Task 1");
-            //checkTask("Task 2");
+            checkTask("Task 1");
+            checkTask("Task 2");
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

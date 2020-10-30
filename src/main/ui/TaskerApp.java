@@ -359,6 +359,10 @@ public class TaskerApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows the user to edit individual properties of a selected lab (continues previous method)
+    // CREATED DUE TO LINE LIMIT
+
     private void editLabDetailsPart2(Lab labSelected, String modifyLabAction) {
         if (modifyLabAction.equals("ch--time")) {
             System.out.println("Enter new lab time: ");
@@ -394,6 +398,9 @@ public class TaskerApp {
         editTutorialDetails(tutorialSelected);
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows the user to edit individual properties of a selected tutorial
+
     private void editTutorialDetails(Tutorial tutorialSelected) {
         String modifyTutorialAction = input.next();
         if (modifyTutorialAction.equals("ch--cname")) {
@@ -412,6 +419,10 @@ public class TaskerApp {
             editTutorialDetailsPart2(tutorialSelected, modifyTutorialAction);
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: allows the user to edit individual properties of a selected lab (continues previous method)
+    // CREATED DUE TO LINE LIMIT
 
     private void editTutorialDetailsPart2(Tutorial tutorialSelected, String modifyTutorialAction) {
         if (modifyTutorialAction.equals("ch--time")) {
