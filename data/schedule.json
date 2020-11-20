@@ -2,5 +2,8 @@
     "labs": [],
     "tutorials": [],
     "name": "Main",
-    "tasks": []
+    "tasks": [{
+        "name": "Task 1",
+        "status": false
+    }]
 }

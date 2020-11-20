@@ -1,6 +1,7 @@
 package ui;
 
 import model.Schedule;
+import model.Task;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
