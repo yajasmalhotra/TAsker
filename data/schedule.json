@@ -1,35 +1,6 @@
 {
-    "labs": [
-        {
-            "sectionName": "L1B",
-            "courseName": "CPSC",
-            "roomNumber": 0,
-            "courseNum": 210
-        },
-        {
-            "sectionName": "L1C",
-            "courseName": "CPSC",
-            "roomNumber": 0,
-            "courseNum": 121
-        }
-    ],
-    "tutorials": [
-        {
-            "sectionName": "T1B",
-            "courseName": "CPSC",
-            "roomNumber": 0,
-            "courseNum": 210
-        },
-        {
-            "sectionName": "T1Z",
-            "courseName": "CPSC",
-            "roomNumber": 0,
-            "courseNum": 121
-        }
-    ],
-    "name": "Schedule 1",
-    "tasks": [{
-        "name": "Task 1",
-        "status": false
-    }]
+    "labs": [],
+    "tutorials": [],
+    "name": "Main",
+    "tasks": []
 }
