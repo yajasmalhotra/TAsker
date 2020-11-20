@@ -53,6 +53,53 @@ public class TaskerGUI2 {
         jsonWriter = new JsonWriter(JSON_STORE);
         schedule = new Schedule("Main");
 
+        saveAndLoadButton(panel);
+
+        JLabel taskNameLabel = new JLabel("Enter Task Name:");
+        taskNameLabel.setBounds(40, 100, 300, 30);
+        panel.add(taskNameLabel);
+
+        JTextField taskNameTextField = new JTextField();
+        taskNameTextField.setBounds(40, 150, 500, 30);
+        panel.add(taskNameTextField);
+
+        makeTaskButton(panel, taskNameTextField);
+
+        JTextArea displayTasksTextArea = new JTextArea();
+        displayTasksTextArea.setBounds(40, 350, 500, 500);
+        panel.add(displayTasksTextArea);
+
+        displayTaskButton(panel, displayTasksTextArea);
+
+
+        frame.setVisible(true);
+    }
+
+    private static void makeTaskButton(JPanel panel, JTextField taskNameTextField) {
+        JButton makeTaskButton = new JButton("Create Task");
+        makeTaskButton.setBounds(40, 190, 300, 30);
+        panel.add(makeTaskButton);
+        makeTaskButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                makeTask(taskNameTextField);
+            }
+        });
+    }
+
+    private static void displayTaskButton(JPanel panel, JTextArea displayTasksTextArea) {
+        JButton displayTasksButton = new JButton("Display Created Tasks");
+        displayTasksButton.setBounds(40, 300, 300, 30);
+        panel.add(displayTasksButton);
+        displayTasksButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayTasks(displayTasksTextArea);
+            }
+        });
+    }
+
+    private static void saveAndLoadButton(JPanel panel) {
         JButton saveButton = new JButton("Save");
         saveButton.setBounds(20, 20, 200, 30);
         panel.add(saveButton);
@@ -71,41 +118,6 @@ public class TaskerGUI2 {
                 loadSchedule();
             }
         });
-
-        JLabel taskNameLabel = new JLabel("Enter Task Name:");
-        taskNameLabel.setBounds(40, 100, 300, 30);
-        panel.add(taskNameLabel);
-
-        JTextField taskNameTextField = new JTextField();
-        taskNameTextField.setBounds(40, 150, 500, 30);
-        panel.add(taskNameTextField);
-
-        JButton makeTaskButton = new JButton("Create Task");
-        makeTaskButton.setBounds(40, 190, 300, 30);
-        panel.add(makeTaskButton);
-        makeTaskButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                makeTask(taskNameTextField);
-            }
-        });
-
-        JTextArea displayTasksTextArea = new JTextArea();
-        displayTasksTextArea.setBounds(40, 350, 500, 500);
-        panel.add(displayTasksTextArea);
-
-        JButton displayTasksButton = new JButton("Display Created Tasks");
-        displayTasksButton.setBounds(40, 300, 300, 30);
-        panel.add(displayTasksButton);
-        displayTasksButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayTasks(displayTasksTextArea);
-            }
-        });
-
-
-        frame.setVisible(true);
     }
 
     // EFFECTS: saves the created tasks into the schedule.
