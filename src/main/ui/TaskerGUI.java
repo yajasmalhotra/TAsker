@@ -6,67 +6,103 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class TaskerGUI {
-
-    private JFrame frameMain;
+    private JButton buttonMsg;
+    private JPanel panelMain;
+    private JTabbedPane tabbedPane1;
     private JButton saveButton;
     private JButton loadButton;
-    private JPanel panel;
+    private JTextField taskNameTextField;
+    private JButton makeTaskButton;
+    private JButton displayTasksButton;
+    private JTextArea displayTasksTextArea;
+    private ImageIcon image1;
+    private JLabel imageLabel;
 
-    private JButton createButton;
-    private JButton modifyButton;
-    private JButton displayButton;
-
+    private static final String JSON_STORE = "./data/schedule.json";
     private Schedule schedule;
+    private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private static final String JSON_STORE = "./data/schedule.json";
 
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 700;
 
     public TaskerGUI() {
 
-        saveButton = new JButton("Save");
-        saveButton.setBounds(40, HEIGHT - 80, 110, 30);
+        schedule = new Schedule("Main");
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
 
-        loadButton = new JButton("Load");
-        loadButton.setBounds(WIDTH - 150, HEIGHT - 80, 110, 30);
+        saveSchedule();
+        loadSchedule();
 
-        createButton = new JButton("Create");
-        createButton.setBounds(30, 30, 110, 30);
 
-        modifyButton = new JButton("Modify");
-        createButton.setBounds(400, 30, 110, 30);
+        makeTaskButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                makeTask();
+            }
+        });
+        displayTasksButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String tasks = "";
 
-        displayButton = new JButton("Display");
-        createButton.setBounds(660, 30, 110, 30);
+                for (int i = 0; i < schedule.getTasks().size(); i++) {
+                    tasks += (i + 1) + "." + schedule.getTasks().get(i).getName() + ":\n"
+                            + "Status: " + schedule.getTasks().get(i).getStatus() + "\n";
+                }
 
-        frameMain = new JFrame();
-        frameMain.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameMain.setVisible(true);
-        frameMain.setLayout(new BorderLayout());
-        frameMain.setLocationRelativeTo(null);
-
-        frameMain.add(saveButton);
-        frameMain.add(loadButton);
-        frameMain.add(createButton);
-        frameMain.add(modifyButton);
-        frameMain.add(displayButton);
-
-        panel = new JPanel();
-        panel.setBounds(10, 80, WIDTH - 20, HEIGHT);
-        panel.setBackground(Color.gray);
-
-        frameMain.add(panel);
+                displayTasksTextArea.setText(tasks);
+            }
+        });
     }
 
+    private void makeTask() {
+        Task newTask = new Task(taskNameTextField.getText());
+        schedule.addTask(newTask);
+    }
+
+    private void loadSchedule() {
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    schedule = jsonReader.read();
+                    System.out.println("Loaded " + schedule.getName() + " from " + JSON_STORE);
+                } catch (IOException p) {
+                    System.out.println("Unable to read from file: " + JSON_STORE);
+                }
+            }
+        });
+    }
+
+    private void saveSchedule() {
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    jsonWriter.open();
+                    jsonWriter.write(schedule);
+                    jsonWriter.close();
+                    System.out.println("Saved " + schedule.getName() + " to " + JSON_STORE);
+                } catch (FileNotFoundException p) {
+                    System.out.println("Unable to write to file: " + JSON_STORE);
+                }
+            }
+        });
+    }
 
     public static void main(String[] args) {
-        new TaskerGUI();
+        JFrame frame = new JFrame("Tasker");
+        frame.setContentPane(new TaskerGUI().panelMain);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
-
 }

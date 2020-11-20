@@ -32,11 +32,12 @@ public class TaskerGUI2 {
     private static JsonWriter jsonWriter;
     private static JsonReader jsonReader;
 
-
+    // EFFECTS: constructor
     public TaskerGUI2() {
 
     }
 
+    // EFFECTS: handles the code for all created components
     public static void main(String[] args) {
         JFrame frame = new JFrame("Tasker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,6 +108,9 @@ public class TaskerGUI2 {
         frame.setVisible(true);
     }
 
+    // EFFECTS: saves the created tasks into the schedule.
+    //          plays audio if save successful.
+
     private static void saveSchedule() {
         try {
             jsonWriter.open();
@@ -119,6 +123,8 @@ public class TaskerGUI2 {
         }
     }
 
+    // EFFECTS: loads tasks created in previous sessions,
+    //          plays audio if load successful.
     private static void loadSchedule() {
         try {
             schedule = jsonReader.read();
@@ -129,11 +135,13 @@ public class TaskerGUI2 {
         }
     }
 
+    // EFFECTS: creates a new task
     private static void makeTask(JTextField taskNameTextField) {
         Task newTask = new Task(taskNameTextField.getText());
         schedule.addTask(newTask);
     }
 
+    // EFFECTS: displays the tasks created
     private static void displayTasks(JTextArea displayTasksTextArea) {
         String tasks = "";
 
@@ -145,6 +153,7 @@ public class TaskerGUI2 {
         displayTasksTextArea.setText(tasks);
     }
 
+    // EFFECTS: plays a success sound on event
     public static void playAudio(String filepath) {
 
         InputStream music;
