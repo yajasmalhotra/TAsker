@@ -4,12 +4,13 @@ import model.Schedule;
 import model.Task;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class TaskerGUI2 {
@@ -36,9 +37,6 @@ public class TaskerGUI2 {
 
     }
 
-
-
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("Tasker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,14 +57,7 @@ public class TaskerGUI2 {
         panel.add(saveButton);
         saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    jsonWriter.open();
-                    jsonWriter.write(schedule);
-                    jsonWriter.close();
-                    System.out.println("Saved " + schedule.getName() + " to " + JSON_STORE);
-                } catch (FileNotFoundException p) {
-                    System.out.println("Unable to write to file: " + JSON_STORE);
-                }
+                saveSchedule();
             }
         });
 
@@ -76,12 +67,7 @@ public class TaskerGUI2 {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    schedule = jsonReader.read();
-                    System.out.println("Loaded " + schedule.getName() + " from " + JSON_STORE);
-                } catch (IOException p) {
-                    System.out.println("Unable to read from file: " + JSON_STORE);
-                }
+                loadSchedule();
             }
         });
 
@@ -99,8 +85,7 @@ public class TaskerGUI2 {
         makeTaskButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Task newTask = new Task(taskNameTextField.getText());
-                schedule.addTask(newTask);
+                makeTask(taskNameTextField);
             }
         });
 
@@ -114,19 +99,63 @@ public class TaskerGUI2 {
         displayTasksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String tasks = "";
-
-                for (int i = 0; i < schedule.getTasks().size(); i++) {
-                    tasks += (i + 1) + "." + schedule.getTasks().get(i).getName() + ":\n"
-                            + "Status: " + schedule.getTasks().get(i).getStatus() + "\n";
-                }
-
-                displayTasksTextArea.setText(tasks);
+                displayTasks(displayTasksTextArea);
             }
         });
 
 
         frame.setVisible(true);
+    }
+
+    private static void saveSchedule() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(schedule);
+            jsonWriter.close();
+            System.out.println("Saved " + schedule.getName() + " to " + JSON_STORE);
+            playAudio("./Success1.wav");
+        } catch (FileNotFoundException p) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    private static void loadSchedule() {
+        try {
+            schedule = jsonReader.read();
+            System.out.println("Loaded " + schedule.getName() + " from " + JSON_STORE);
+            playAudio("./Success1.wav");
+        } catch (IOException p) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    private static void makeTask(JTextField taskNameTextField) {
+        Task newTask = new Task(taskNameTextField.getText());
+        schedule.addTask(newTask);
+    }
+
+    private static void displayTasks(JTextArea displayTasksTextArea) {
+        String tasks = "";
+
+        for (int i = 0; i < schedule.getTasks().size(); i++) {
+            tasks += (i + 1) + "." + schedule.getTasks().get(i).getName() + ":\n"
+                    + "Status: " + schedule.getTasks().get(i).getStatus() + "\n";
+        }
+
+        displayTasksTextArea.setText(tasks);
+    }
+
+    public static void playAudio(String filepath) {
+
+        InputStream music;
+        try {
+            music = new FileInputStream(new File(filepath));
+            AudioStream successSound = new AudioStream(music);
+            AudioPlayer.player.start(successSound);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
     }
 
 
