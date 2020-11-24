@@ -66,11 +66,24 @@ public class TaskerGUI2 {
         makeTaskButton(panel, taskNameTextField);
 
         JTextArea displayTasksTextArea = new JTextArea();
-        displayTasksTextArea.setBounds(40, 350, 500, 500);
+        displayTasksTextArea.setBounds(40, 350, 300, 500);
         panel.add(displayTasksTextArea);
 
         displayTaskButton(panel, displayTasksTextArea);
 
+        JLabel taskSelectorLabel = new JLabel("Select Task:");
+        taskSelectorLabel.setBounds(360, 300, 100, 30);
+        panel.add(taskSelectorLabel);
+
+        JComboBox taskSelector = new JComboBox();
+        taskSelector.setBounds(460, 300, 100, 30);
+        panel.add(taskSelector);
+
+        taskSelector.addItem("Choose");
+
+        for (Task task : schedule.getTasks()) {
+            taskSelector.addItem(task.getName());
+        }
 
         frame.setVisible(true);
     }

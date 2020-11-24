@@ -15,6 +15,9 @@ public class Task implements Writable {
     public Task(String name) {
         this.name = name;
         this.status = false;
+        this.teachingAssistant = "";
+        this.course = "";
+        this.time = "";
     }
 
     public void setTime(String newTime) {
