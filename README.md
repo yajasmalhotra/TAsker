@@ -26,6 +26,13 @@ Tutorials to the schedule.
 - As a user, I want to be able to load my schedule from a file and continue
 with all scheduled events unchanged.
 
+<h3>Phase 4: Task 2 </h3>
+
+I chose to implement a bi-directional relationship between the classes Task and TeachingAssistant. In this
+application, a TA can be assigned to any number of tasks, while a task itself can have any number of TA's 
+assigned to it. 
+
+
 <h3>Phase 4: Task 3</h3>
 
 Overall, I am quite happy with the design and implementation of my project. I needed to implement two very similar

@@ -229,7 +229,7 @@ public class TaskerApp {
                     ((i + 1) + ")"),
                     schedule.getTasks().get(i).getName() + "\n",
                     "\tTime: " + schedule.getTasks().get(i).getTime() + "\n",
-                    "\tTA: " + schedule.getTasks().get(i).getTeachingAssistant() + "\n",
+                    "\tTA: " + schedule.getTasks().get(i).getTeachingAssistants() + "\n",
                     "\tStatus: " + schedule.getTasks().get(i).getStatus());
         }
     }

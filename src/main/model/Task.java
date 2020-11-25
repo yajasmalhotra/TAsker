@@ -11,7 +11,6 @@ public class Task implements Writable {
 
     private String name;
     private String time;
-    private String teachingAssistant;
     private List<TeachingAssistant> teachingAssistantList;
     private String course;
     private boolean status;
@@ -19,7 +18,6 @@ public class Task implements Writable {
     public Task(String name) {
         this.name = name;
         this.status = false;
-        this.teachingAssistant = null;
         this.course = null;
         this.time = null;
         teachingAssistantList = new ArrayList<>();
@@ -66,7 +64,7 @@ public class Task implements Writable {
         }
     }
 
-    public List<TeachingAssistant> getTeachingAssistant() {
+    public List<TeachingAssistant> getTeachingAssistants() {
         String error = "Not Assigned";
 
         if (teachingAssistantList.isEmpty()) {
@@ -99,9 +97,10 @@ public class Task implements Writable {
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("time", time);
-        json.put("teachingAssistant", teachingAssistant);
+//        json.put("teachingAssistant", teachingAssistant);
         json.put("course", course);
         json.put("status", status);
+        json.put("teaching assistants", teachingAssistantList);
 
         return json;
     }

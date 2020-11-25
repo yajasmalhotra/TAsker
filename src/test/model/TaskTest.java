@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskTest {
@@ -10,12 +13,14 @@ public class TaskTest {
     Task task1;
     String error;
     TeachingAssistant ta;
+    List<TeachingAssistant> taList;
 
     @BeforeEach
     public void setup() {
         task1 = new Task("Task Test");
         error = "Not Assigned";
         ta = new TeachingAssistant("Andrew");
+        taList = new ArrayList<>();
     }
 
     @Test
@@ -34,12 +39,12 @@ public class TaskTest {
     public void testSetTeachingAssistantNoError() {
         task1.addTeachingAssistant(ta);
 
-        assertEquals("Andrew", task1.getTeachingAssistant().get(0).getName());
+        assertEquals("Andrew", task1.getTeachingAssistants().get(0).getName());
     }
 
     @Test
     public void testSetTeachingAssistantError() {
-        assertEquals(null, task1.getTeachingAssistant());
+        assertEquals(null, task1.getTeachingAssistants());
     }
 
     @Test

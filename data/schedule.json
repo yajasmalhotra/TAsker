@@ -1,20 +1,26 @@
 {
     "labs": [],
     "tutorials": [],
-    "name": "Schedule 1",
+    "name": "Main",
     "tasks": [
         {
-            "teachingAssistant": "",
-            "name": "Test",
-            "course": "",
-            "time": "",
+            "name": "Task 1",
+            "teaching assistants": [],
             "status": false
         },
         {
-            "teachingAssistant": "",
             "name": "Task 2",
-            "course": "",
-            "time": "",
+            "teaching assistants": [],
+            "status": false
+        },
+        {
+            "name": "Task 3",
+            "teaching assistants": [],
+            "status": false
+        },
+        {
+            "name": "Task 4",
+            "teaching assistants": [],
             "status": false
         }
     ]
