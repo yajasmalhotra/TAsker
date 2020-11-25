@@ -43,6 +43,8 @@ public class TaskerGUI2 {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setSize(600, 600);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -77,13 +79,33 @@ public class TaskerGUI2 {
 
         JComboBox taskSelector = new JComboBox();
         taskSelector.setBounds(460, 300, 100, 30);
-        panel.add(taskSelector);
-
         taskSelector.addItem("Choose");
 
         for (Task task : schedule.getTasks()) {
             taskSelector.addItem(task.getName());
+            // TODO:
         }
+        panel.add(taskSelector);
+
+        JButton completeTask = new JButton("Mark Complete");
+        completeTask.setBounds(360, 350, 200, 30);
+        panel.add(completeTask);
+        completeTask.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        JButton deleteTask = new JButton("Delete Task");
+        deleteTask.setBounds(360, 400, 200, 30);
+        panel.add(deleteTask);
+        deleteTask.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
 
         frame.setVisible(true);
     }
@@ -114,7 +136,7 @@ public class TaskerGUI2 {
 
     private static void saveAndLoadButton(JPanel panel) {
         JButton saveButton = new JButton("Save");
-        saveButton.setBounds(20, 20, 200, 30);
+        saveButton.setBounds(40, 20, 200, 30);
         panel.add(saveButton);
         saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -123,7 +145,7 @@ public class TaskerGUI2 {
         });
 
         JButton loadButton = new JButton("Load");
-        loadButton.setBounds(300, 20, 200, 30);
+        loadButton.setBounds(350, 20, 200, 30);
         panel.add(loadButton);
         loadButton.addActionListener(new ActionListener() {
             @Override
