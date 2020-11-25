@@ -1,9 +1,6 @@
 package ui;
 
-import model.Lab;
-import model.Schedule;
-import model.Task;
-import model.Tutorial;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -315,7 +312,7 @@ public class TaskerApp {
         } else if (taskCommand.equals("ch--ta")) {
             System.out.println("Enter new TA name: ");
             String newTA = input.next();
-            taskSelected.setTeachingAssistant(newTA);
+            taskSelected.addTeachingAssistant(new TeachingAssistant(newTA));
         }
     }
 

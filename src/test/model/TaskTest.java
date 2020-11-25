@@ -9,11 +9,13 @@ public class TaskTest {
 
     Task task1;
     String error;
+    TeachingAssistant ta;
 
     @BeforeEach
     public void setup() {
         task1 = new Task("Task Test");
         error = "Not Assigned";
+        ta = new TeachingAssistant("Andrew");
     }
 
     @Test
@@ -30,9 +32,9 @@ public class TaskTest {
 
     @Test
     public void testSetTeachingAssistantNoError() {
-        task1.setTeachingAssistant("Andrew");
+        task1.addTeachingAssistant(ta);
 
-        assertEquals("Andrew", task1.getTeachingAssistant());
+        assertEquals("Andrew", task1.getTeachingAssistant().get(0).toString());
     }
 
     @Test

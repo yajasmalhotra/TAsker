@@ -3,12 +3,16 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Assign tasks to teaching assistants
 public class Task implements Writable {
 
     private String name;
     private String time;
     private String teachingAssistant;
+    private List<TeachingAssistant> teachingAssistantList;
     private String course;
     private boolean status;
 
@@ -18,14 +22,16 @@ public class Task implements Writable {
         this.teachingAssistant = "";
         this.course = "";
         this.time = "";
+        teachingAssistantList = new ArrayList<>();
     }
 
     public void setTime(String newTime) {
         this.time = newTime;
     }
 
-    public void setTeachingAssistant(String ta) {
-        this.teachingAssistant = ta;
+    public void addTeachingAssistant(TeachingAssistant ta) {
+        teachingAssistantList.add(ta);
+        ta.assignTask(this);
     }
 
     // REQUIRES: this.status must already be false
@@ -61,13 +67,13 @@ public class Task implements Writable {
         }
     }
 
-    public String getTeachingAssistant() {
+    public List<TeachingAssistant> getTeachingAssistant() {
         String error = "Not Assigned";
 
-        if (teachingAssistant == null) {
-            return error;
+        if (teachingAssistantList.isEmpty()) {
+            return null;
         } else {
-            return teachingAssistant;
+            return teachingAssistantList;
         }
     }
 
