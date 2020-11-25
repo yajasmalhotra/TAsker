@@ -34,12 +34,12 @@ public class TaskTest {
     public void testSetTeachingAssistantNoError() {
         task1.addTeachingAssistant(ta);
 
-        assertEquals("Andrew", task1.getTeachingAssistant().get(0).toString());
+        assertEquals("Andrew", task1.getTeachingAssistant().get(0).getName());
     }
 
     @Test
     public void testSetTeachingAssistantError() {
-        assertEquals(error, task1.getTeachingAssistant());
+        assertEquals(null, task1.getTeachingAssistant());
     }
 
     @Test

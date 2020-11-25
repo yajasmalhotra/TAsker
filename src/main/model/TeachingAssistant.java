@@ -16,11 +16,14 @@ public class TeachingAssistant {
         name = newName;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void assignTask(Task task) {
         if (!tasksAssigned.contains(task)) {
             tasksAssigned.add(task);
         }
-
     }
 
 }

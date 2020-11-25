@@ -19,9 +19,9 @@ public class Task implements Writable {
     public Task(String name) {
         this.name = name;
         this.status = false;
-        this.teachingAssistant = "";
-        this.course = "";
-        this.time = "";
+        this.teachingAssistant = null;
+        this.course = null;
+        this.time = null;
         teachingAssistantList = new ArrayList<>();
     }
 
@@ -58,7 +58,6 @@ public class Task implements Writable {
 
     public String getTime() {
         String error = "Not Assigned";
-
 
         if (time == null) {
             return error;
