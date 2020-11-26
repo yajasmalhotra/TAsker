@@ -5,7 +5,7 @@
     "tasks": [
         {
             "name": "Task 1",
-            "teaching assistants": [],
+            "teaching assistants": [{"name": "Richard"}],
             "status": false
         },
         {

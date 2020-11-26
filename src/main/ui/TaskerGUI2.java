@@ -43,6 +43,38 @@ public class TaskerGUI2 {
 
     // EFFECTS: handles the code for all created components
     public static void main(String[] args) {
+        JPanel panel = init();
+
+        saveAndLoadButton(panel);
+
+
+        miscComponents(panel);
+
+        JTextArea displayTasksTextArea = new JTextArea();
+        displayTasksTextArea.setBounds(40, 240, 300, 450);
+        panel.add(displayTasksTextArea);
+
+        displayTaskButton(panel, displayTasksTextArea);
+
+        JLabel taskSelectorLabel = new JLabel("Select Task:");
+        taskSelectorLabel.setBounds(360, 300, 100, 30);
+        panel.add(taskSelectorLabel);
+
+        taskSelector = new JComboBox<String>();
+        taskSelector.setBounds(460, 300, 100, 30);
+        taskSelector.addItem("Choose");
+
+        panel.add(taskSelector);
+
+        completeTaskButton(panel, displayTasksTextArea);
+
+        deleteTaskButton(panel, displayTasksTextArea);
+
+
+        frame.setVisible(true);
+    }
+
+    private static JPanel init() {
         frame = new JFrame("Tasker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -58,25 +90,10 @@ public class TaskerGUI2 {
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
         schedule = new Schedule("Main");
+        return panel;
+    }
 
-        saveAndLoadButton(panel);
-
-        JLabel taskNameLabel = new JLabel("Enter Task Name:");
-        taskNameLabel.setBounds(40, 70, 300, 30);
-        panel.add(taskNameLabel);
-
-        JTextField taskNameTextField = new JTextField();
-        taskNameTextField.setBounds(40, 110, 240, 30);
-        panel.add(taskNameTextField);
-
-        JLabel taLabel = new JLabel("Enter TA Name: ");
-        taLabel.setBounds(300, 70, 240, 30);
-        panel.add(taLabel);
-
-        JTextField taNameTextField = new JTextField();
-        taNameTextField.setBounds(300, 110, 240, 30);
-        panel.add(taNameTextField);
-
+    private static void taAssignmentButton(JPanel panel, JTextField taNameTextField) {
         JButton taAssignmentButton = new JButton("Assign TA");
         taAssignmentButton.setBounds(300, 150, 240, 30);
         panel.add(taAssignmentButton);
@@ -87,38 +104,9 @@ public class TaskerGUI2 {
                         new TeachingAssistant(taNameTextField.getText()));
             }
         });
+    }
 
-
-        makeTaskButton(panel, taskNameTextField);
-
-        JTextArea displayTasksTextArea = new JTextArea();
-        displayTasksTextArea.setBounds(40, 290, 300, 500);
-        panel.add(displayTasksTextArea);
-
-        displayTaskButton(panel, displayTasksTextArea);
-
-        JLabel taskSelectorLabel = new JLabel("Select Task:");
-        taskSelectorLabel.setBounds(360, 300, 100, 30);
-        panel.add(taskSelectorLabel);
-
-        taskSelector = new JComboBox<String>();
-        taskSelector.setBounds(460, 300, 100, 30);
-        taskSelector.addItem("Choose");
-
-        panel.add(taskSelector);
-
-        JButton completeTask = new JButton("Mark Complete");
-        completeTask.setBounds(360, 350, 200, 30);
-        panel.add(completeTask);
-        completeTask.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                schedule.getTasks().get((taskSelector.getSelectedIndex() - 1)).completeTask();
-                displayTasks(displayTasksTextArea);
-                // TODO
-            }
-        });
-
+    private static void deleteTaskButton(JPanel panel, JTextArea displayTasksTextArea) {
         JButton deleteTask = new JButton("Delete Task");
         deleteTask.setBounds(360, 400, 200, 30);
         panel.add(deleteTask);
@@ -131,11 +119,20 @@ public class TaskerGUI2 {
                 displayTasks(displayTasksTextArea);
             }
         });
+    }
 
-
-
-
-        frame.setVisible(true);
+    private static void completeTaskButton(JPanel panel, JTextArea displayTasksTextArea) {
+        JButton completeTask = new JButton("Mark Complete");
+        completeTask.setBounds(360, 350, 200, 30);
+        panel.add(completeTask);
+        completeTask.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                schedule.getTasks().get((taskSelector.getSelectedIndex() - 1)).completeTask();
+                displayTasks(displayTasksTextArea);
+                // TODO
+            }
+        });
     }
 
     private static void makeTaskButton(JPanel panel, JTextField taskNameTextField) {
@@ -152,7 +149,7 @@ public class TaskerGUI2 {
 
     private static void displayTaskButton(JPanel panel, JTextArea displayTasksTextArea) {
         JButton displayTasksButton = new JButton("Display Created Tasks");
-        displayTasksButton.setBounds(300, 300, 300, 30);
+        displayTasksButton.setBounds(40, 200, 500, 30);
         panel.add(displayTasksButton);
         displayTasksButton.addActionListener(new ActionListener() {
             @Override
@@ -169,7 +166,6 @@ public class TaskerGUI2 {
         saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 saveSchedule();
-                updateTaskSelector();
             }
         });
 
@@ -259,6 +255,28 @@ public class TaskerGUI2 {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");
         }
+    }
+
+    public static void miscComponents(JPanel panel) {
+        JLabel taskNameLabel = new JLabel("Enter Task Name:");
+        taskNameLabel.setBounds(40, 70, 300, 30);
+        panel.add(taskNameLabel);
+
+        JTextField taskNameTextField = new JTextField();
+        taskNameTextField.setBounds(40, 110, 240, 30);
+        panel.add(taskNameTextField);
+
+        JLabel taLabel = new JLabel("Enter TA Name: ");
+        taLabel.setBounds(300, 70, 240, 30);
+        panel.add(taLabel);
+
+        JTextField taNameTextField = new JTextField();
+        taNameTextField.setBounds(300, 110, 240, 30);
+        panel.add(taNameTextField);
+
+        taAssignmentButton(panel, taNameTextField);
+
+        makeTaskButton(panel, taskNameTextField);
     }
 
 
