@@ -74,6 +74,20 @@ public class Task implements Writable {
         }
     }
 
+    public String getTANames() {
+        String error = "Not Assigned";
+        String names = "";
+
+        if (teachingAssistantList.isEmpty()) {
+            return null;
+        } else {
+            for (TeachingAssistant ta : teachingAssistantList) {
+                names += ta.getName() + "\n";
+            }
+            return names;
+        }
+    }
+
     public String getCourse() {
         String error = "Not Assigned";
 

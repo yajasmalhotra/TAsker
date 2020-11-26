@@ -46,7 +46,7 @@ public class TaskerGUI2 {
         frame = new JFrame("Tasker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(600, 600);
+        frame.setSize(600, 800);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
@@ -78,7 +78,7 @@ public class TaskerGUI2 {
         panel.add(taNameTextField);
 
         JButton taAssignmentButton = new JButton("Assign TA");
-        taAssignmentButton.setBounds(350, 150, 100, 30);
+        taAssignmentButton.setBounds(300, 150, 240, 30);
         panel.add(taAssignmentButton);
         taAssignmentButton.addActionListener(new ActionListener() {
             @Override
@@ -92,7 +92,7 @@ public class TaskerGUI2 {
         makeTaskButton(panel, taskNameTextField);
 
         JTextArea displayTasksTextArea = new JTextArea();
-        displayTasksTextArea.setBounds(40, 350, 300, 500);
+        displayTasksTextArea.setBounds(40, 290, 300, 500);
         panel.add(displayTasksTextArea);
 
         displayTaskButton(panel, displayTasksTextArea);
@@ -140,7 +140,7 @@ public class TaskerGUI2 {
 
     private static void makeTaskButton(JPanel panel, JTextField taskNameTextField) {
         JButton makeTaskButton = new JButton("Create Task");
-        makeTaskButton.setBounds(40, 150, 300, 30);
+        makeTaskButton.setBounds(40, 150, 240, 30);
         panel.add(makeTaskButton);
         makeTaskButton.addActionListener(new ActionListener() {
             @Override
@@ -152,7 +152,7 @@ public class TaskerGUI2 {
 
     private static void displayTaskButton(JPanel panel, JTextArea displayTasksTextArea) {
         JButton displayTasksButton = new JButton("Display Created Tasks");
-        displayTasksButton.setBounds(40, 300, 300, 30);
+        displayTasksButton.setBounds(300, 300, 300, 30);
         panel.add(displayTasksButton);
         displayTasksButton.addActionListener(new ActionListener() {
             @Override
@@ -169,13 +169,7 @@ public class TaskerGUI2 {
         saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 saveSchedule();
-
-                for (Task task : schedule.getTasks()) {
-                    taskSelector.addItem(task.getName());
-                }
-
-                frame.revalidate();
-                frame.repaint();
+                updateTaskSelector();
             }
         });
 
@@ -187,15 +181,19 @@ public class TaskerGUI2 {
             public void actionPerformed(ActionEvent e) {
                 loadSchedule();
 
-                for (Task task : schedule.getTasks()) {
-                    taskSelector.addItem(task.getName());
-                }
-
-                frame.revalidate();
-                frame.repaint();
+                updateTaskSelector();
 
             }
         });
+    }
+
+    private static void updateTaskSelector() {
+        for (Task task : schedule.getTasks()) {
+            taskSelector.addItem(task.getName());
+        }
+
+        frame.revalidate();
+        frame.repaint();
     }
 
     // EFFECTS: saves the created tasks into the schedule.
@@ -240,20 +238,10 @@ public class TaskerGUI2 {
         String tasks = "";
         String tas = "";
 
-//        for (int i = 0; i < schedule.getTasks().size(); i++) {
-//            tasks += (i + 1) + "." + schedule.getTasks().get(i).getName() + ":\n"
-//                    + "Status: " + schedule.getTasks().get(i).getStatus() + "\n"
-//                    + "TA's Assigned: " + schedule.getTasks().get(i).getTeachingAssistant().getName() + "\n";
-//        }
-
         for (int i = 0; i < schedule.getTasks().size(); i++) {
-            for (int j = 0; i < schedule.getTasks().get(i).getTeachingAssistants().size(); j++) {
-                tas += schedule.getTasks().get(i).getTeachingAssistants().get(j).getName() + ", ";
-            }
-
             tasks += (i + 1) + "." + schedule.getTasks().get(i).getName() + ":\n"
                     + "Status: " + schedule.getTasks().get(i).getStatus() + "\n"
-                    + "TA's Assigned: " + tas + "\n";
+                    + "TA's Assigned: " + schedule.getTasks().get(i).getTANames() + "\n";
         }
 
         displayTasksTextArea.setText(tasks);
