@@ -44,7 +44,7 @@ public class TaskTest {
 
     @Test
     public void testSetTeachingAssistantError() {
-        assertEquals(null, task1.getTeachingAssistants());
+        assertNull(task1.getTeachingAssistants());
     }
 
     @Test
@@ -81,5 +81,10 @@ public class TaskTest {
         assertEquals(error, task1.getCourse());
     }
 
+    @Test
+    public void testGetTANames() {
+        task1.addTeachingAssistant(ta);
+        assertTrue(task1.getTANames().equals("Andrew" + "\n"));
+    }
 
 }

@@ -28,6 +28,7 @@ public class TeachingAssistant {
 
     public void removeFromTask(Task task) {
         tasksAssigned.remove(task);
+        task.removeTeachingAssistant(this);
     }
 
 }

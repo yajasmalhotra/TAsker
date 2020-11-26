@@ -32,6 +32,10 @@ public class Task implements Writable {
         ta.assignTask(this);
     }
 
+    public void removeTeachingAssistant(TeachingAssistant ta) {
+        teachingAssistantList.remove(ta);
+    }
+
     // REQUIRES: this.status must already be false
     // MODIFIES: this
     // EFFECTS: this.status is made true
