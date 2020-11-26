@@ -82,9 +82,16 @@ public class TaskTest {
     }
 
     @Test
-    public void testGetTANames() {
+    public void testGetTANamesNoError() {
         task1.addTeachingAssistant(ta);
         assertTrue(task1.getTANames().equals("Andrew" + "\n"));
+    }
+
+    @Test
+    public void testGetTANamesNull() {
+        task1.addTeachingAssistant(ta);
+        task1.removeTeachingAssistant(ta);
+        assertNull(task1.getTANames());
     }
 
 }
