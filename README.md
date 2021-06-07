@@ -17,14 +17,14 @@ system.
 
 <h4>User Stories:</h4>
 - As a user, I want to be able to create tasks/labs/tutorials for a course of 
-my choice.
-- As a user, I want to view all the tasks/labs/tutorials I have created. 
-- As a user, I want to be able to select a task and mark it as complete.
+my choice.  
+- As a user, I want to view all the tasks/labs/tutorials I have created.  
+- As a user, I want to be able to select a task and mark it as complete.  
 - As a user, I want to be able to add an unspecified number of Tasks, Labs, or 
-Tutorials to the schedule.
-- As a user, I want to be able to save my schedule to file.
+Tutorials to the schedule.  
+- As a user, I want to be able to save my schedule to file.  
 - As a user, I want to be able to load my schedule from a file and continue
-with all scheduled events unchanged.
+with all scheduled events unchanged.  
 
 <h3>Phase 4: Task 2 </h3>
 
